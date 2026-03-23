@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-text font-body antialiased;
+    font-size: 16px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-heading leading-1.2;
+  }
+
+  h1 {
+    @apply text-[56px] font-medium;
+  }
+
+  h2 {
+    @apply text-[36px] font-medium;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-1200 mx-auto px-4 w-full;
+  }
+
+  .section-padding {
+    @apply py-80;
+  }
+
+  .card-shadow {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  }
+}

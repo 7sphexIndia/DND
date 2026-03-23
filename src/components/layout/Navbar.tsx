@@ -1,0 +1,179 @@
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Container from '../common/Container';
+import Button from '../common/Button';
+import logo from '../../assets/images/logo.svg';
+import icon from '../../assets/images/symbol 1.svg';
+
+const Navbar: React.FC = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // ✅ Updated navLinks with dropdown
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    {
+      name: 'Products',
+      dropdown: [
+        { name: 'Vegetable Seeds', href: '/product-1' },
+        { name: 'Field Crop Seeds', href: '/product-2' },
+      ],
+    },
+    {
+      name: 'Media',
+      dropdown: [
+        { name: 'News', href: '#' },
+        { name: 'Blogs', href: '#' },
+      ],
+    },
+  ];
+
+  const isActive = (href?: string) => {
+    if (!href || href === '#') return false;
+    if (href === '/') return location.pathname === '/';
+    return location.pathname.startsWith(href);
+  };
+
+  const isDropdownActive = (dropdown?: { href: string }[]) => {
+    if (!dropdown) return false;
+    return dropdown.some(item => isActive(item.href));
+  };
+
+  return (
+    <nav className={`relative bg-white top-0 left-0 right-0 z-50 transition-all duration-300 h-[80px] md:h-[138px] flex items-center`}>
+      
+      <Container className="flex items-center justify-between">
+        
+        {/* Logo */}
+        <div className="flex items-center">
+          <Link to="/">
+            <img src={logo} alt="Krushi" className="w-[70px] md:w-[150px] h-auto object-contain" />
+          </Link>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <div key={link.name} className="relative group">
+              
+              {link.dropdown ? (
+                <div
+                  className={`flex items-center gap-1 text-[18px] font-medium cursor-pointer ${
+                    isActive(link.href) || isDropdownActive(link.dropdown)
+                      ? 'bg-[#0F5D4E] text-white px-6 py-3 rounded-md'
+                      : 'text-[#333] hover:text-[#0F5D4E]'
+                  }`}
+                >
+                  {link.name}
+                  <span className="text-xs">▼</span>
+                </div>
+              ) : (
+                <Link 
+                  to={link.href || '#'}
+                  className={`flex items-center gap-1 text-[18px] font-medium ${
+                    isActive(link.href)
+                      ? 'bg-[#0F5D4E] text-white px-6 py-3 rounded-md'
+                      : 'text-[#333] hover:text-[#0F5D4E]'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )}
+
+              {/* Dropdown */}
+              {link.dropdown && (
+                <div className="absolute left-0 top-full hidden group-hover:block pt-2 z-50">
+                  <div className="bg-white shadow-lg rounded-md py-3 min-w-[180px]">
+                    {link.dropdown.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className="block px-5 py-2 text-[15px] text-[#333] hover:bg-gray-100"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+
+          {/* Contact Button */}
+          <Link to="/contact">
+            <Button
+              variant="primary"
+              size="sm"
+              className="flex items-center gap-[10px] px-[18px] py-[17px] rounded-[5px] bg-[#005948] text-white text-[16px] font-semibold leading-[120%]"
+            >
+              Contact Us
+              <img src={icon} alt="icon" className="w-[18px] h-[18px]" />
+            </Button>
+          </Link>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button 
+          className="md:hidden text-[#005948] p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <svg className="w-[36px] h-[36px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+          </svg>
+        </button>
+      </Container>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white absolute top-full left-0 right-0 shadow-lg border-t border-gray-100 py-6 px-4 flex flex-col space-y-4 animate-fadeIn">
+          {navLinks.map((link) => (
+            <div key={link.name}>
+              
+              {link.dropdown ? (
+                <div className="text-lg font-medium text-text py-2 block">
+                  {link.name}
+                </div>
+              ) : (
+                <Link 
+                  to={link.href || '#'}
+                  className={`text-lg font-medium py-2 block ${
+                    isActive(link.href) ? 'text-[#0F5D4E]' : 'text-text hover:text-[#0F5D4E]'
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              )}
+
+              {/* Mobile Dropdown */}
+              {link.dropdown && (
+                <div className="ml-4 flex flex-col space-y-2">
+                  {link.dropdown.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="text-gray-600"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+
+          <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="w-full">
+            <Button variant="primary" className="w-full flex items-center justify-center gap-2 bg-[#005948] text-white py-3 rounded-[5px]">
+              Contact Us
+              <img src={icon} alt="icon" className="w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;

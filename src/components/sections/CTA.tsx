@@ -1,0 +1,63 @@
+import React from 'react';
+import Container from '../common/Container';
+import iconWhite from '../../assets/images/apme_symbol-white.svg';
+import ctaBg from '../../assets/images/cta-bg.png';
+import Button from '../common/Button';
+import icon2 from '../../assets/images/symbol 1.svg';
+
+export interface CTAProps {
+  tagText?: string;
+  title: string;
+  description: string;
+  buttonText: string;
+}
+
+const CTA: React.FC<CTAProps> = ({
+  tagText,
+  title,
+  description,
+  buttonText
+}) => {
+  return (
+    <section
+      className="mx-[20px] rounded-[10px] py-[20px] md:py-[60px] bg-cover bg-center"
+      style={{ backgroundImage: `url(${ctaBg})`, backgroundColor: '#F26A21' }}
+    >
+      <Container>
+
+        <div className="flex flex-col items-center justify-center text-center px-6 sm:px-10">
+
+          {/* Tag */}
+          {tagText && (
+            <div className="flex items-center gap-2 mb-4">
+              <img src={iconWhite} alt="icon" className="w-[16px] h-[16px]" />
+              <p className="text-white text-[16px] font-medium">
+                {tagText}
+              </p>
+            </div>
+          )}
+
+          {/* Heading */}
+          <h2 className="text-white text-[36px] font-medium leading-[1.2] mb-6 max-w-4xl">
+            {title}
+          </h2>
+
+          {/* Paragraph */}
+          <p className="text-white text-[16px] leading-relaxed max-w-4xl mb-12 leading-[1.2]">
+            {description}
+          </p>
+
+          {/* Button */}
+          <Button className="flex items-center gap-[10px] px-[18px] py-[17px] rounded-[5px] bg-[#005948] text-white text-[16px] font-semibold">
+            {buttonText}
+            <img src={icon2} alt="icon" className="w-[18px] h-[18px]" />
+          </Button>
+
+        </div>
+
+      </Container>
+    </section>
+  );
+};
+
+export default CTA;
