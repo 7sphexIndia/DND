@@ -31,7 +31,7 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-[60px] md:py-[100px] bg-[#FAF9F6]">
+    <section id="faq" className="py-[60px] md:py-[100px]">
       <Container>
         <div>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 items-stretch">

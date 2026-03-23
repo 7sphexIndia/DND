@@ -9,7 +9,7 @@ import greenIcon from '../../assets/images/symbol 2.svg';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative py-[60px] lg:py-0 lg:h-[calc(100vh-162px)] lg:min-h-[700px] flex items-center mx-[20px] rounded-[10px] overflow-hidden">      {/* Background Image with Overlay */}
+    <section className="relative py-[60px] lg:py-0 lg:h-[calc(100vh-162px)] lg:min-h-[700px] flex items-center mx-[16px] lg:mx-[20px] rounded-[10px] overflow-hidden">      {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}

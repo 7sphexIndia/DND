@@ -11,7 +11,7 @@ import Contact from './pages/Contact';
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen selection:text-accent bg-white">
+      <div className="min-h-screen selection:text-accent bg-[#FAF9F6]">
         <Navbar />
         <main>
           <Routes>

@@ -21,7 +21,7 @@ const FieldTrials: React.FC = () => {
   ];
 
   return (
-    <section id="why-choose-us" className="py-[60px] md:py-[100px] bg-white">
+    <section id="why-choose-us" className="py-[60px] md:py-[100px]">
       <Container>
         <div>
 

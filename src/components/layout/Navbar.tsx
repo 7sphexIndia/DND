@@ -10,14 +10,20 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   // ✅ Updated navLinks with dropdown
-  const navLinks = [
+  type NavLink = {
+    name: string;
+    href?: string;
+    dropdown?: { name: string; href: string }[];
+  };
+
+  const navLinks: NavLink[] = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
+    { name: 'About', href: '#' }, // href: '/about'
     {
       name: 'Products',
       dropdown: [
-        { name: 'Vegetable Seeds', href: '/product-1' },
-        { name: 'Field Crop Seeds', href: '/product-2' },
+        { name: 'Vegetable Seeds', href: '#' }, // href: '/product-1'
+        { name: 'Field Crop Seeds', href: '#' }, // href: '/product-2'
       ],
     },
     {
@@ -41,9 +47,9 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`relative bg-white top-0 left-0 right-0 z-50 transition-all duration-300 h-[80px] md:h-[138px] flex items-center`}>
+    <nav className={`sticky bg-[#FAF9F6] top-0 left-0 right-0 z-50 transition-all duration-300 h-[80px] md:h-[138px] flex items-center`}>
       
-      <Container className="flex items-center justify-between">
+      <Container className="flex items-center justify-between h-full">
         
         {/* Logo */}
         <div className="flex items-center">
@@ -53,43 +59,61 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-4 lg:gap-8 h-full">
           {navLinks.map((link) => (
-            <div key={link.name} className="relative group">
+            <div key={link.name} className="relative group h-full flex items-center z-10">
               
               {link.dropdown ? (
-                <div
-                  className={`flex items-center gap-1 text-[18px] font-medium cursor-pointer transition-all duration-300 ${
-                    isActive(link.href) || isDropdownActive(link.dropdown)
-                      ? 'bg-[#0F5D4E] text-white px-6 py-3 rounded-md'
-                      : 'text-[#333] hover:text-[#F26A21] hover:-translate-y-0.5'
-                  }`}
-                >
-                  {link.name}
-                  <span className="text-xs">▼</span>
+                <div className="flex items-center cursor-pointer h-full px-4 lg:px-6 z-10 transition-all duration-300">
+                  {/* Active Background Tab */}
+                  {(isActive(link.href) || isDropdownActive(link.dropdown)) && (
+                    <div className="absolute top-0 left-0 right-0 h-[80px] md:h-[105px] bg-[#005948] rounded-b-[12px] -z-10 shadow-md"></div>
+                  )}
+                  <span
+                    className={`flex items-center gap-1 text-[18px] font-medium transition-all duration-300 ${
+                      isActive(link.href) || isDropdownActive(link.dropdown)
+                        ? 'text-white border-b-[2px] border-white pb-[2px]'
+                        : 'text-[#333] hover:text-[#F26A21] hover:-translate-y-0.5'
+                    }`}
+                  >
+                    {link.name}
+                    <span className="text-xs">▼</span>
+                  </span>
                 </div>
               ) : (
                 <Link 
                   to={link.href || '#'}
-                  className={`flex items-center gap-1 text-[18px] font-medium inline-block transition-all duration-300 ${
-                    isActive(link.href)
-                      ? 'bg-[#0F5D4E] text-white px-6 py-3 rounded-md'
-                      : 'text-[#333] hover:text-[#F26A21] hover:-translate-y-0.5'
-                  }`}
+                  className="flex items-center h-full px-4 lg:px-6 z-10 transition-all duration-300"
                 >
-                  {link.name}
+                  {/* Active Background Tab */}
+                  {isActive(link.href) && (
+                    <div className="absolute top-0 left-0 right-0 h-[80px] md:h-[105px] bg-[#005948] rounded-b-[12px] -z-10 shadow-md"></div>
+                  )}
+                  <span
+                    className={`text-[18px] font-medium transition-all duration-300 inline-block ${
+                      isActive(link.href)
+                        ? 'text-white border-b-[2px] border-white pb-[2px]'
+                        : 'text-[#333] hover:text-[#F26A21] hover:-translate-y-0.5'
+                    }`}
+                  >
+                    {link.name}
+                  </span>
                 </Link>
               )}
 
               {/* Dropdown */}
               {link.dropdown && (
-                <div className="absolute left-0 top-full hidden group-hover:block pt-2 z-50">
-                  <div className="bg-white shadow-lg rounded-md py-3 min-w-[180px]">
+                <div className="absolute left-0 top-full mt-2 hidden group-hover:block z-[100] pt-2">
+  
+                  {/* Hover bridge (fix gap issue) */}
+                  <div className="absolute -top-2 left-0 w-full h-2"></div>
+
+                  <div className="bg-white shadow-lg rounded-b-md py-3 min-w-[180px] border-t-2 border-[#005948]">
                     {link.dropdown.map((item) => (
                       <Link
                         key={item.name}
                         to={item.href}
-                        className="block px-5 py-2 text-[15px] text-[#333] hover:bg-gray-100 hover:text-[#F26A21] hover:translate-x-1 transition-all duration-300"
+                        className="block px-5 py-2 text-[15px] text-[#333] hover:bg-gray-50 hover:text-[#F26A21] hover:translate-x-1 transition-all duration-300"
                       >
                         {item.name}
                       </Link>

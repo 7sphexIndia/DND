@@ -44,7 +44,7 @@ const ContactForm: React.FC = () => {
   const labelClass = "absolute left-[20px] top-[18px] text-[#6C6C6C] text-[14px] pointer-events-none opacity-0 peer-placeholder-shown:opacity-100 transition-opacity";
 
   return (
-    <section id="contact" className="bg-[#F2F4F0] mx-[20px] rounded-[10px] py-[20px] md:py-[80px] overflow-hidden mb-[100px]">
+    <section id="contact" className="bg-[#F2F4F0] mx-[16px] lg:mx-[20px]  rounded-[10px] py-[20px] md:py-[80px] overflow-hidden mb-[100px]">
       <Container>
         <div>
           

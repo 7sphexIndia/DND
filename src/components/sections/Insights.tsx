@@ -8,12 +8,12 @@ const Insights: React.FC = () => {
   return (
     <section id="insights" className="py-[60px] md:py-[100px]">
       <Container>
-        <div className="max-w-[1400px] mx-auto px-[20px]">
+        <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-6 lg:gap-20 items-center">
 
             {/* Left Column */}
             <div className="flex flex-col py-6">
-              <div className="mb-5 md:mb-16">
+              <div className="mb-5 md:mb-12">
                 <div className="flex items-center gap-2 mb-4">
                   <img src={icon} alt="icon" className="w-[16px] h-[16px]" />
                   <p className="text-[#005948] text-[15px] font-medium">Knowledge Center</p>

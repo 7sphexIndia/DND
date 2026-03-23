@@ -65,7 +65,8 @@ const Categories: React.FC = () => {
   ];
 
   return (
-    <section className="bg-[#F2F4F0] mx-[20px] rounded-[10px] py-[50px] md:py-[80px] overflow-hidden">
+    <section className="bg-[#F2F4F0] mx-[16px] lg:mx-[20px]  rounded-[10px] py-[50px] md:py-[80px] overflow-hidden">
+      
       <Container>
 
         {/* Top Tag + Heading */}
@@ -89,14 +90,14 @@ const Categories: React.FC = () => {
 
             {/* Icon */}
             <div className="w-[60px] h-[60px] md:w-[80px] md:h-[80px] shrink-0 flex items-center justify-center rounded-full border border-[#F26A21]">
-              <img src={item.icon} alt={item.name} className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] object-contain" />
+              <img src={item.icon} alt={item.name} className="w-[26px] h-[26px] md:w-[40px] md:h-[40px] object-contain" />
             </div>
 
             {/* Content */}
             <div className="flex flex-col gap-[10px] max-w-[244px]">
               
               {/* Title */}
-              <h4 className="text-[#1F1F1F] text-[22px] font-medium leading-[1.2] tracking-[0.011em]">
+              <h4 className="text-[#1F1F1F] text-[20px] lg:text-[22px] font-medium leading-[1.2] tracking-[0.011em]">
                 {item.name}
               </h4>
 
