@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { ChevronDown, Clock } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Container from '../common/Container';
 import locationIcon from '../../assets/images/location.svg';
 import callIcon from '../../assets/images/call.svg';
 import emailIcon from '../../assets/images/email.svg';
 import btnIcon from '../../assets/images/apme_symbol-white.svg';
+import btnIconGreen from '../../assets/images/apme_symbol-green.svg';
 import SchedualIcon from '../../assets/images/schedual.svg';
+import ad1 from '../../assets/images/ad1.svg';
+import ad2 from '../../assets/images/ad2.svg';
+import ad3 from '../../assets/images/ad3.svg';
+import btnIcon2 from '../../assets/images/symbol 1.svg';
+
 
 
 const ContactContent: React.FC = () => {
@@ -45,7 +51,8 @@ const ContactContent: React.FC = () => {
   const textareaLabelClass = "absolute left-[22px] top-[18px] text-[#6C6C6C] text-[14px] leading-[120%] tracking-[0.011em] pointer-events-none opacity-0 peer-placeholder-shown:opacity-100 transition-opacity";
 
   return (
-    <section className="py-[60px] md:py-[100px]" id="contact-form">
+    <>
+      <section className="py-[60px] md:py-[100px]" id="contact-form">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           <div className="flex flex-col lg:col-span-1 pt-[4px]">
@@ -184,6 +191,71 @@ const ContactContent: React.FC = () => {
         </div>
       </Container>
     </section>
+
+    {/* Crop Advisory Section */}
+    <section className="py-[60px] md:py-[100px] bg-[#FAF9F6]">
+      <Container>
+        <div className="text-center max-w-[800px] mx-auto mb-[40px] md:mb-[60px]">
+          <h2 className="text-[#1F1F1F] text-[28px] md:text-[42px] font-medium mb-4">
+            Crop Advisory and Technical Assistance
+          </h2>
+          <p className="text-[#4A4A4A] text-[16px] md:text-[18px]">
+            Our team provides guidance to help you select the right hybrid and improve crop performance
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-[40px] md:mb-[60px]">
+          {/* Card 1 */}
+          <div className="bg-white p-[30px] md:p-[40px] rounded-[10px] shadow-sm border border-black/5 flex flex-col items-center text-center">
+            <div className="w-[60px] h-[60px] md:w-[84px] md:h-[84px] flex items-center justify-center mb-6">
+              <img src={ad1} alt="Product Selection" className="w-full h-full object-contain" />
+            </div>
+            <h4 className="text-[#1F1F1F] text-[20px] md:text-[24px] font-medium mb-3">
+              Product<br />Selection Guidance
+            </h4>
+            <p className="text-[#4A4A4A] text-[14px] md:text-[16px] leading-[1.5]">
+              Assistance in choosing hybrids suitable for your region and season.
+            </p>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-white p-[30px] md:p-[40px] rounded-[10px] shadow-sm border border-black/5 flex flex-col items-center text-center">
+            <div className="w-[60px] h-[60px] md:w-[84px] md:h-[84px] flex items-center justify-center mb-6">
+              <img src={ad2} alt="Seasonal Planning" className="w-full h-full object-contain" />
+            </div>
+            <h4 className="text-[#1F1F1F] text-[20px] md:text-[24px] font-medium mb-3">
+              Seasonal Crop<br />Planning Support
+            </h4>
+            <p className="text-[#4A4A4A] text-[14px] md:text-[16px] leading-[1.5]">
+              Recommendations for sowing cycles and hybrid suitability.
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white p-[30px] md:p-[40px] rounded-[10px] shadow-sm border border-black/5 flex flex-col items-center text-center">
+            <div className="w-[60px] h-[60px] md:w-[84px] md:h-[84px] flex items-center justify-center mb-6">
+              <img src={ad3} alt="Disease Management" className="w-full h-full object-contain" />
+            </div>
+            <h4 className="text-[#1F1F1F] text-[20px] md:text-[24px] font-medium mb-3">
+              Disease Management<br />Consultation
+            </h4>
+            <p className="text-[#4A4A4A] text-[14px] md:text-[16px] leading-[1.5]">
+              Support for selecting disease-tolerant hybrids and crop protection strategies.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-center">
+          <button
+            className="flex items-center gap-[8px] md:gap-[10px] px-[18px] py-[14px] md:px-[24px] md:py-[18px] rounded-[5px] bg-[#005948] hover:bg-[#004a3b] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 text-white text-[14px] md:text-[16px] font-semibold leading-[120%]"
+          >
+            Talk to Our Expert
+            <img src={btnIcon2} alt="icon" className="w-[18px] h-[18px]" />
+          </button>
+        </div>
+      </Container>
+      </section>
+    </>
   );
 };
 
