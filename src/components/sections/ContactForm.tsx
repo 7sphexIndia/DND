@@ -152,7 +152,7 @@ const ContactForm: React.FC = () => {
           </div>
 
           {/* Contact Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full mx-auto">
 
             {/* Visit Us */}
             <div className="bg-[#FAF9F6] p-[26px] rounded-[10px] flex items-center gap-[14px]">

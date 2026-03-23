@@ -98,9 +98,9 @@ const Footer: React.FC = () => {
 
       {/* Bottom Bar */}
       <div className="bg-[#005242] py-[20px]">
-        <div className="max-w-[1200px] mx-auto px-[20px] flex flex-col md:flex-row justify-between items-center text-[13px] text-[#E5E5E5]">
-          <p>© 2026 DRD Plantech LLP. All Rights Reserved. Hybrid Vegetable Seed Manufacturer in India.</p>
-          <div className="flex space-x-4 mt-4 md:mt-0 font-medium">
+        <div className="max-w-[1200px] mx-auto px-[20px] flex flex-col lg:flex-row justify-between items-center text-center lg:text-left text-[13px] text-[#E5E5E5]">
+          <p className="mb-4 lg:mb-0 lg:max-w-none">© 2026 DRD Plantech LLP. All Rights Reserved. Hybrid Vegetable Seed Manufacturer in India.</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 gap-y-2 font-medium">
             <a href="#" className="hover:text-[#F26A21] hover:translate-x-1 inline-block transition-all duration-300">Privacy Policy</a>
             <span className="text-[#1A6A5A]">|</span>
             <a href="#" className="hover:text-[#F26A21] hover:translate-x-1 inline-block transition-all duration-300">Terms & Conditions</a>

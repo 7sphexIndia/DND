@@ -9,11 +9,11 @@ const Insights: React.FC = () => {
     <section id="insights" className="py-[60px] md:py-[100px]">
       <Container>
         <div className="max-w-[1400px] mx-auto px-[20px]">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-6 lg:gap-20 items-center">
 
             {/* Left Column */}
             <div className="flex flex-col py-6">
-              <div className="mb-10 md:mb-16">
+              <div className="mb-5 md:mb-16">
                 <div className="flex items-center gap-2 mb-4">
                   <img src={icon} alt="icon" className="w-[16px] h-[16px]" />
                   <p className="text-[#005948] text-[15px] font-medium">Knowledge Center</p>
@@ -28,7 +28,7 @@ const Insights: React.FC = () => {
                 <p className="mb-4 text-[#333333]">
                   Stay informed with expert guidance and cultivation strategies:
                 </p>
-                <ul className="list-disc pl-5 text-[#333333] text-[16px] font-medium leading-[1.2] space-y-[4px] mt-4 mb-16">
+                <ul className="list-disc pl-5 text-[#333333] text-[16px] font-medium leading-[1.2] space-y-[4px] mt-4 mb-6 md:mb-16">
                   <li>How to choose the right hybrid seeds</li>
                   <li>Disease management techniques</li>
                   <li>Seasonal crop planning tips</li>

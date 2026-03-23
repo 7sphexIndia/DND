@@ -15,6 +15,9 @@ const Hero: React.FC = () => {
         style={{ backgroundImage: `url(${heroBg})` }}
       >
       </div>
+      
+      {/* Mobile Bottom Overlay for clear button contrast */}
+      <div className="absolute inset-x-0 bottom-0 h-[60%] z-[5] bg-gradient-to-t from-[#002f23] via-[#002f23]/60 to-transparent opacity-90 md:hidden pointer-events-none"></div>
 
       <Container className="relative z-10">
         <div className="max-w-3xl">

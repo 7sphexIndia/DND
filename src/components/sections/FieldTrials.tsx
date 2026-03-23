@@ -39,7 +39,7 @@ const FieldTrials: React.FC = () => {
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {reasons.map((item) => (
-              <div key={item.title} className="relative w-full max-w-[378px] h-[250px] rounded-[10px] overflow-hidden group">
+              <div key={item.title} className="relative w-full h-[250px] rounded-[10px] overflow-hidden group">
 
                 {/* Image */}
                 <img
