@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Container from '../common/Container';
 import Button from '../common/Button';
-import logo from '../../assets/images/new-logo.jpg';
+import logo from '../../assets/images/logo.svg';
 import icon from '../../assets/images/symbol 1.svg';
 
 const Navbar: React.FC = () => {
@@ -22,8 +22,8 @@ const Navbar: React.FC = () => {
     {
       name: 'Products',
       dropdown: [
-        { name: 'Vegetable Seeds', href: '/product-1' }, // href: '/product-1'
-        { name: 'Field Crop Seeds', href: '/product-2' }, // href: '/product-2'
+        { name: 'Vegetable Seeds', href: '/vegetable-seeds' },
+        { name: 'Field Crop Seeds', href: '/field-crop-seeds' },
       ],
     },
     {
@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/">
-            <img src={logo} alt="Krushi" className="w-[50px] md:w-[90px] h-[98px] object-contain" />
+            <img src={logo} alt="Krushi" className="w-[50px] md:w-[70px] object-contain" />
           </Link>
         </div>
 
