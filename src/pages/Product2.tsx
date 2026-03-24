@@ -15,7 +15,7 @@ const Product2: React.FC = () => {
       <SEO
         title="Field Crop Seeds"
         description="Browse DRD Plantech LLP field crop seeds for maize, paddy, cotton, pulses, and millets developed for strong performance, resilience, and market-ready output."
-        path="/product-2"
+        path="/Field Crop Seeds"
         keywords="field crop seeds India, maize seeds, paddy seeds, cotton seeds, pulse seeds, DRD Plantech LLP"
       />
       <PageBanner title="Our Field Crop Seeds" backgroundImage={aboutBg} />

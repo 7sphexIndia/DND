@@ -22,7 +22,7 @@ const Product1: React.FC = () => {
       <SEO
         title="Vegetable Seeds"
         description="Explore DRD Plantech LLP vegetable seed hybrids including tomato, okra, bitter gourd, bottle gourd, watermelon, muskmelon, cucumber, chilli, and beans."
-        path="/product-1"
+        path="/Vegetable Seeds"
         keywords="vegetable seeds India, tomato hybrid seeds, okra seeds, chilli seeds, cucumber seeds, DRD Plantech LLP products"
       />
       <PageBanner title="Our Vegetable Seeds" backgroundImage={aboutBg} />
