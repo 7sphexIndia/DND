@@ -12,11 +12,11 @@ app.use(express.json());
 // Simple health check to verify DB connection on startup
 pool.getConnection()
   .then(connection => {
-    console.log('Database connected successfully');
+    console.log('✅ Connected to Aiven DB');
     connection.release();
   })
   .catch(err => {
-    console.error('Database connection failed:', err.message);
+    console.log('❌ DB Error:', err.message);
   });
 
 app.post('/api/contact', async (req, res) => {

@@ -89,7 +89,7 @@ const AdminDashboard: React.FC = () => {
     <div className="min-h-screen bg-[#F8FAFC] p-4 md:p-12 font-sans">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-12">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-[#1E293B] flex items-center gap-3">
               Admin Dashboard
