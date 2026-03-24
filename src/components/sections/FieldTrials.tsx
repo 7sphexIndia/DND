@@ -3,12 +3,12 @@ import icon from '../../assets/images/apme_symbol-green.svg';
 import Container from '../common/Container';
 
 // Trial Images
-import trial1 from '../../assets/images/why-1.png';
-import trial2 from '../../assets/images/why-2.png';
-import trial3 from '../../assets/images/why-3.png';
-import trial4 from '../../assets/images/why-4.png';
-import trial5 from '../../assets/images/why-5.png';
-import trial6 from '../../assets/images/why-6.png';
+import trial1 from '../../assets/images/why-1.webp';
+import trial2 from '../../assets/images/why-2.webp';
+import trial3 from '../../assets/images/why-3.webp';
+import trial4 from '../../assets/images/why-4.webp';
+import trial5 from '../../assets/images/why-5.webp';
+import trial6 from '../../assets/images/why-6.webp';
 
 const FieldTrials: React.FC = () => {
   const reasons = [

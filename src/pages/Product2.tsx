@@ -1,9 +1,9 @@
 import React from 'react';
 import PageBanner from '../components/sections/PageBanner';
-import aboutBg from '../assets/images/about_bg.png';
+import aboutBg from '../assets/images/about_bg.webp';
 import ProductShowcase from '../components/common/ProductShowcase';
-// Using featured.png as a temporary placeholder
-import featuredImg from '../assets/images/featured.png';
+// Using featured.webp as a temporary placeholder
+import featuredImg from '../assets/images/featured.webp';
 import CTA from '../components/sections/CTA';
 import FAQ from '../components/sections/FAQ';
 import ContactForm from '../components/sections/ContactForm';

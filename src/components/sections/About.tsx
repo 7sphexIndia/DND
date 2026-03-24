@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../common/Container';
-import aboutImg from '../../assets/images/about.png';
+import aboutImg from '../../assets/images/about.webp';
 import Button from '../common/Button';
 import icon from '../../assets/images/apme_symbol-green.svg';
 import icon2 from '../../assets/images/symbol 1.svg';

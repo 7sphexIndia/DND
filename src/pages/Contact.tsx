@@ -1,7 +1,7 @@
 import React from 'react';
 import PageBanner from '../components/sections/PageBanner';
 import ContactContent from '../components/sections/ContactContent';
-import aboutBg from '../assets/images/about_bg.png';
+import aboutBg from '../assets/images/about_bg.webp';
 import btnIcon from '../assets/images/symbol 1.svg';
 import greenIcon from '../assets/images/symbol 2.svg';
 import CTA from '../components/sections/CTA';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../common/Container';
-import knowledgeImg from '../../assets/images/knowledge.png';
+import knowledgeImg from '../../assets/images/knowledge.webp';
 import icon from '../../assets/images/apme_symbol-green.svg';
 import btnIcon from '../../assets/images/symbol 1.svg';
 
@@ -45,7 +45,7 @@ const Insights: React.FC = () => {
             </div>
 
             {/* Right Column */}
-            <div className="w-full h-full min-h-[300px] lg:min-h-[400px] rounded-[10px] overflow-hidden">
+            <div className="w-full h-full min-h-[300px] lg:min-h-[400px] max-h-[430px] rounded-[10px] overflow-hidden">
               <img
                 src={knowledgeImg}
                 alt="Practical Farming Insights"

@@ -8,10 +8,10 @@ import GeographicPresence from '../components/sections/GeographicPresence';
 import SustainableAgriculture from '../components/sections/SustainableAgriculture';
 import Container from '../components/common/Container';
 import SEO from '../components/common/SEO';
-import aboutImg from '../assets/images/about.png';
-import farmersImg from '../assets/images/commercial.png';
+import aboutImg from '../assets/images/about.webp';
+import farmersImg from '../assets/images/commercial.webp';
 import icon from '../assets/images/apme_symbol-green.svg';
-import aboutBg from '../assets/images/about_bg.png';
+import aboutBg from '../assets/images/about_bg.webp';
 
 const AboutPage: React.FC = () => {
   return (
