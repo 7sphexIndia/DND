@@ -1,6 +1,6 @@
 import React from 'react';
 import SplitSection from '../common/SplitSection';
-import commercialImg from '../../assets/images/commercial.png';
+import commercialImg from '../../assets/images/commercial.webp';
 
 const Commercial: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '../common/Container';
 import Button from '../common/Button';
-import heroBg from '../../assets/images/hero_bg.png';
+import heroBg from '../../assets/images/hero_bg.webp';
 import tagIcon from '../../assets/images/apme_symbol-white.svg';
 import icon from '../../assets/images/symbol 1.svg';
 import greenIcon from '../../assets/images/symbol 2.svg';

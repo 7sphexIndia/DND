@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '../common/Container';
-import mapImg from '../../assets/images/map.png';
+import mapImg from '../../assets/images/map.webp';
 
 const GeographicPresence: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from '../common/Container';
 import iconWhite from '../../assets/images/apme_symbol-white.svg';
-import ctaBg from '../../assets/images/cta-bg.png';
+import ctaBg from '../../assets/images/cta-bg.webp';
 import Button from '../common/Button';
 import icon2 from '../../assets/images/symbol 1.svg';
 

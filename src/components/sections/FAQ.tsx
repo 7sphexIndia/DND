@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Container from '../common/Container';
 import icon from '../../assets/images/apme_symbol-green.svg';
-import faqImg from '../../assets/images/faq.png';
+import faqImg from '../../assets/images/faq.webp';
 
 interface FAQItem {
   question: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import SplitSection from '../common/SplitSection';
-import researchImg from '../../assets/images/research.png';
+import researchImg from '../../assets/images/research.webp';
 
 const Featured: React.FC = () => {
   return (
