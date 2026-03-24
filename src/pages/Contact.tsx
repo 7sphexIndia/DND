@@ -6,7 +6,6 @@ import btnIcon from '../assets/images/symbol 1.svg';
 import greenIcon from '../assets/images/symbol 2.svg';
 import CTA from '../components/sections/CTA';
 import FAQ from '../components/sections/FAQ';
-import ContactForm from '../components/sections/ContactForm';
 
 
 const Contact: React.FC = () => {
@@ -42,16 +41,19 @@ const Contact: React.FC = () => {
         }
       />
       <ContactContent />
+
+      <FAQ />
+
       <CTA 
         tagText="Become a Dealer Partner"
         title="Connect With Our Team Today"
         description="We are committed to providing reliable hybrid vegetable seeds, professional support, and long-term agricultural partnerships. Contact us today to discuss your requirements."
         buttonText="Send Inquiry"
+        className="mb-[100px]"
+
       />
       
-      <FAQ />
       
-      <ContactForm />
     </>
   );
 };
