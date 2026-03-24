@@ -8,10 +8,22 @@ interface FAQItem {
   answer: string;
 }
 
-const FAQ: React.FC = () => {
+interface FAQProps {
+  className?: string;
+  itemClassName?: string;
+  items?: FAQItem[];
+  action?: React.ReactNode;
+}
+
+const FAQ: React.FC<FAQProps> = ({
+  className = 'py-[60px] md:py-[100px]',
+  itemClassName = 'bg-[#F2F4F0] rounded-[8px] overflow-hidden',
+  items,
+  action,
+}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const faqs: FAQItem[] = [
+  const defaultFaqs: FAQItem[] = [
     {
       question: "What are hybrid vegetable seeds?",
       answer: "Hybrid seeds are developed by combining selected parent lines to achieve superior yield, disease resistance, and uniform crop performance."
@@ -31,13 +43,13 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-[60px] md:py-[100px]">
+    <section id="faq" className={className}>
       <Container>
         <div>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 items-stretch">
             
             {/* Left Column */}
-            <div className="flex flex-col">
+            <div className="flex flex-col h-full">
               {/* Header */}
               <div className="mb-10">
                 <div className="flex items-center gap-2 mb-4">
@@ -49,12 +61,12 @@ const FAQ: React.FC = () => {
                 </h2>
               </div>
               
-              {/* Image */}
-              <div className="w-full mt-auto rounded-[12px] overflow-hidden">
+              {/* Image Container */}
+              <div className="w-full flex-1 relative min-h-[250px] sm:min-h-[300px] lg:min-h-0 rounded-[12px] overflow-hidden">
                 <img 
                   src={faqImg} 
                   alt="Farmer inspecting crops" 
-                  className="w-full h-auto object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
@@ -62,10 +74,10 @@ const FAQ: React.FC = () => {
 
             {/* Right Column - Accordion */}
             <div className="flex flex-col justify-center space-y-4">
-              {faqs.map((faq, index) => (
+              {(items || defaultFaqs).map((faq, index) => (
                 <div 
                   key={index} 
-                  className="bg-[#F2F4F0] rounded-[8px] overflow-hidden"
+                  className={itemClassName}
                 >
                   <button
                     className="w-full px-6 py-6 flex items-center justify-between text-left focus:outline-none"
@@ -93,6 +105,13 @@ const FAQ: React.FC = () => {
                   </div>
                 </div>
               ))}
+
+              {/* Action Button */}
+              {action && (
+                <div className="pt-4">
+                  {action}
+                </div>
+              )}
             </div>
 
           </div>

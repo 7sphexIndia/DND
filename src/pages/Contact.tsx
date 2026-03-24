@@ -6,6 +6,7 @@ import btnIcon from '../assets/images/symbol 1.svg';
 import greenIcon from '../assets/images/symbol 2.svg';
 import CTA from '../components/sections/CTA';
 import FAQ from '../components/sections/FAQ';
+import OfficeLocation from '../components/sections/OfficeLocation';
 
 
 const Contact: React.FC = () => {
@@ -42,15 +43,56 @@ const Contact: React.FC = () => {
       />
       <ContactContent />
 
-      <FAQ />
+      <OfficeLocation />
+
+      <FAQ
+        className="py-[50px] md:py-[80px] mx-[16px] lg:mx-[20px] bg-[#F2F4F0]"
+        itemClassName="bg-[#FAF9F6] rounded-[10px] overflow-hidden"
+        items={[
+          {
+            question: "How can I become a dealer?",
+            answer: "You can apply through our dealership inquiry form. Our team will review your details and contact you."
+          },
+          {
+            question: "How quickly will I receive a response?",
+            answer: "Our team typically responds within 24-48 business hours to all inquiries."
+          },
+          {
+            question: "Do you provide crop advisory support?",
+            answer: "Yes, we provide technical assistance and crop advisory support to our farmers and dealer partners."
+          },
+          {
+            question: "Can I request bulk pricing?",
+            answer: "Yes, bulk pricing is available for large-scale commercial orders. Please contact our sales team for more details."
+          }
+        ]}
+        action={
+          <button
+            type="button"
+            className="flex items-center gap-[8px] md:gap-[10px] px-[20px] py-[12px] md:px-[25px] md:py-[15px] rounded-[5px] bg-[#005948] hover:bg-[#004a3b] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 text-white text-[14px] md:text-[16px] font-semibold"
+          >
+            Contact Our Sales Team
+            <img src={btnIcon} alt="icon" className="w-[18px] h-[18px]" />
+          </button>
+        }
+      />
 
       <CTA 
         tagText="Become a Dealer Partner"
         title="Connect With Our Team Today"
         description="We are committed to providing reliable hybrid vegetable seeds, professional support, and long-term agricultural partnerships. Contact us today to discuss your requirements."
         buttonText="Send Inquiry"
-        className="mb-[100px]"
-
+        className="mt-[60px] md:mt-[100px] mb-[60px] md:mb-[100px]"
+        secondaryAction={
+          <a
+            href="tel:+917984109698"
+            className="group flex items-center gap-[8px] md:gap-[10px] px-[14px] py-[12px] md:px-[18px] md:py-[17px] rounded-[5px] border border-white text-white hover:bg-white hover:text-[#005948] hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(255,255,255,0.3)] transition-all duration-300 text-[14px] md:text-[16px] font-semibold leading-[120%]"
+          >
+            Call Now
+            <img src={btnIcon} alt="icon" className="w-[18px] h-[18px] group-hover:hidden" />
+            <img src={greenIcon} alt="icon" className="w-[18px] h-[18px] hidden group-hover:block" />
+          </a>
+        }
       />
       
       

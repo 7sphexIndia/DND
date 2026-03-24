@@ -109,10 +109,10 @@ const ContactContent: React.FC = () => {
           </div>
 
           <div className="bg-[#F2F4F0] p-[20px] lg:p-[30px] rounded-[10px] h-fit max-w-[560px] lg:ml-auto w-full">
-            <h3 className="text-[#1F1F1F] text-[16px] md:text-[22px] font-medium mb-[16px]">
+            <h3 className="text-[#1F1F1F] text-[22px] font-medium mb-[16px]">
               Send Us a Message
             </h3>
-            <p className="text-[#333333] text-[14px] md:text-[16px] mb-[40px]">
+            <p className="text-[#333333] text-[16px] mb-[40px]">
               Have a question about hybrid vegetable seeds, crop selection, or dealership? Fill out the inquiry form below and our team will respond promptly.
             </p>
 
@@ -217,27 +217,27 @@ const ContactContent: React.FC = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white p-[30px] md:p-[40px] rounded-[10px] shadow-sm border border-black/5 flex flex-col items-center text-center">
-            <div className="w-[60px] h-[60px] md:w-[84px] md:h-[84px] flex items-center justify-center mb-6">
+          <div className="bg-[#FAF9F6] p-[20px] md:p-[24px] rounded-[10px] border border-black/5 flex flex-col items-center text-center">
+            <div className="w-[60px] h-[60px] flex items-center justify-center mb-5">
               <img src={ad2} alt="Seasonal Planning" className="w-full h-full object-contain" />
             </div>
-            <h4 className="text-[#1F1F1F] text-[20px] md:text-[24px] font-medium mb-3">
+            <h4 className="text-[#1F1F1F] text-[20px] md:text-[22px] font-medium mb-3">
               Seasonal Crop<br />Planning Support
             </h4>
-            <p className="text-[#4A4A4A] text-[14px] md:text-[16px] leading-[1.5]">
+            <p className="text-[#333333] text-[14px] md:text-[16px] leading-[1.1]">
               Recommendations for sowing cycles and hybrid suitability.
             </p>
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white p-[30px] md:p-[40px] rounded-[10px] shadow-sm border border-black/5 flex flex-col items-center text-center">
-            <div className="w-[60px] h-[60px] md:w-[84px] md:h-[84px] flex items-center justify-center mb-6">
+          <div className="bg-[#FAF9F6] p-[20px] md:p-[24px] rounded-[10px] border border-black/5 flex flex-col items-center text-center">
+            <div className="w-[60px] h-[60px] flex items-center justify-center mb-5">
               <img src={ad3} alt="Disease Management" className="w-full h-full object-contain" />
             </div>
             <h4 className="text-[#1F1F1F] text-[20px] md:text-[24px] font-medium mb-3">
               Disease Management<br />Consultation
             </h4>
-            <p className="text-[#4A4A4A] text-[14px] md:text-[16px] leading-[1.5]">
+            <p className="text-[#333333] text-[14px] md:text-[16px] leading-[1.1]">
               Support for selecting disease-tolerant hybrids and crop protection strategies.
             </p>
           </div>

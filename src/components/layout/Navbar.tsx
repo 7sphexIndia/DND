@@ -109,7 +109,11 @@ const Navbar: React.FC = () => {
                       <Link
                         key={item.name}
                         to={item.href}
-                        className="block px-5 py-2 text-[15px] text-[#333] hover:bg-gray-50 hover:text-[#F26A21] transition-all duration-300"
+                        className={`block px-5 py-2 text-[15px] transition-all duration-300 ${
+                          isActive(item.href)
+                            ? 'bg-gray-50 text-[#005948] font-medium'
+                            : 'text-[#333] hover:bg-gray-50 hover:text-[#F26A21]'
+                        }`}
                       >
                         {item.name}
                       </Link>
@@ -173,7 +177,9 @@ const Navbar: React.FC = () => {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="text-gray-600"
+                      className={`block py-1 transition-all duration-300 ${
+                        isActive(item.href) ? 'text-[#005948] font-bold' : 'text-gray-600 hover:text-[#F26A21]'
+                      }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
