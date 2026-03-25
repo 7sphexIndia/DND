@@ -24,13 +24,9 @@ const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-<<<<<<< HEAD
       const response = await fetch('/api/contact', {
-=======
-      const response = await fetch('http://localhost:5000/api/contact', {
->>>>>>> 86bd339a09a5375e5fd3cab7fdbf9da808dd55be
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -44,7 +40,7 @@ const ContactForm: React.FC = () => {
 
       const data = await response.json();
       console.log('Success:', data);
-      
+
       setSubmitSuccess(true);
       setFormState({ name: '', phone: '', email: '', company: '', city: '', inquiryType: '', message: '' });
       setTimeout(() => setSubmitSuccess(false), 5000);
@@ -71,7 +67,7 @@ const ContactForm: React.FC = () => {
     <section id="contact" className="bg-[#F2F4F0] mx-[16px] lg:mx-[20px]  rounded-[10px] py-[20px] md:py-[80px] overflow-hidden mb-[100px]">
       <Container>
         <div>
-          
+
           {/* Header */}
           <div className="flex flex-col items-center mb-12 text-center">
             <div className="flex items-center gap-2 mb-4">
@@ -97,7 +93,7 @@ const ContactForm: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="w-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
-                  
+
                   {/* Full Name */}
                   <div className="relative">
                     <input required type="text" name="name" value={formState.name} onChange={handleChange} placeholder=" " className={inputClass} />
@@ -105,7 +101,7 @@ const ContactForm: React.FC = () => {
                       Full Name <span className="text-[#F26A21]">*</span>
                     </label>
                   </div>
-                  
+
                   {/* Phone Number */}
                   <div className="relative">
                     <input required type="tel" name="phone" value={formState.phone} onChange={handleChange} placeholder=" " className={inputClass} />
@@ -113,7 +109,7 @@ const ContactForm: React.FC = () => {
                       Phone Number <span className="text-[#F26A21]">*</span>
                     </label>
                   </div>
-                  
+
                   {/* Email Address */}
                   <div className="relative">
                     <input required type="email" name="email" value={formState.email} onChange={handleChange} placeholder=" " className={inputClass} />
@@ -121,7 +117,7 @@ const ContactForm: React.FC = () => {
                       Email Address <span className="text-[#F26A21]">*</span>
                     </label>
                   </div>
-                  
+
                   {/* Company Name */}
                   <div className="relative">
                     <input required type="text" name="company" value={formState.company} onChange={handleChange} placeholder=" " className={inputClass} />
@@ -129,7 +125,7 @@ const ContactForm: React.FC = () => {
                       Company Name <span className="text-[#F26A21]">*</span>
                     </label>
                   </div>
-                  
+
                   {/* City/Location */}
                   <div className="relative">
                     <input required type="text" name="city" value={formState.city} onChange={handleChange} placeholder=" " className={inputClass} />
@@ -137,7 +133,7 @@ const ContactForm: React.FC = () => {
                       City/Location <span className="text-[#F26A21]">*</span>
                     </label>
                   </div>
-                  
+
                   {/* Inquiry Type */}
                   <div className="relative">
                     <select required name="inquiryType" value={formState.inquiryType} onChange={handleChange} className={`${inputClass} appearance-none cursor-pointer`} >
