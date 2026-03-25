@@ -26,7 +26,11 @@ const ContactForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
+<<<<<<< HEAD
       const response = await fetch('/api/contact', {
+=======
+      const response = await fetch('http://localhost:5000/api/contact', {
+>>>>>>> 86bd339a09a5375e5fd3cab7fdbf9da808dd55be
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
