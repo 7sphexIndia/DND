@@ -19,7 +19,7 @@ const ContactContent: React.FC = () => {
     email: '',
     company: '',
     city: '',
-    inquiryType: '',
+    inquiry_type: '',
     message: ''
   });
 
@@ -47,7 +47,7 @@ const ContactContent: React.FC = () => {
       console.log('Success:', data);
       
       setSubmitSuccess(true);
-      setFormState({ name: '', phone: '', email: '', company: '', city: '', inquiryType: '', message: '' });
+      setFormState({ name: '', phone: '', email: '', company: '', city: '', inquiry_type: '', message: '' });
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
       console.error('Submission error:', error);
@@ -172,14 +172,14 @@ const ContactContent: React.FC = () => {
                     <label className={labelClass}>City/Location <span className="text-[#F26A21]">*</span></label>
                   </div>
                   <div className="relative">
-                    <select required name="inquiryType" value={formState.inquiryType} onChange={handleChange} className={`${inputClass} appearance-none cursor-pointer`}>
+                    <select required name="inquiry_type" value={formState.inquiry_type} onChange={handleChange} className={`${inputClass} appearance-none cursor-pointer`}>
                       <option value="" disabled hidden></option>
                       <option value="sales">Sales & Dealership</option>
                       <option value="product">Product Information</option>
                       <option value="support">Agronomy Support</option>
                       <option value="other">Other</option>
                     </select>
-                    {!formState.inquiryType && (
+                    {!formState.inquiry_type && (
                       <label className="absolute left-[22px] top-1/2 -translate-y-1/2 text-[#6C6C6C] text-[14px] leading-[120%] tracking-[0.011em] pointer-events-none">
                         Inquiry Type <span className="text-[#F26A21]">*</span>
                       </label>
