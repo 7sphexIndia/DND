@@ -14,6 +14,7 @@ import { getApiUrl } from '../../utils/api';
 
 
 const ContactContent: React.FC = () => {
+  const fieldPrefix = 'contact-content';
   const [formState, setFormState] = useState({
     name: '',
     phone: '',
@@ -188,37 +189,37 @@ const ContactContent: React.FC = () => {
               <form onSubmit={handleSubmit} className="flex flex-col gap-[20px]">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-[20px]">
                   <div className="relative">
-                    <input required type="text" name="name" value={formState.name} onChange={handleChange} placeholder=" " className={`${inputClass} ${errors.name ? 'ring-1 ring-red-500' : ''}`} />
-                    <label className={labelClass}>Full Name <span className="text-[#F26A21]">*</span></label>
+                    <input id={`${fieldPrefix}-name`} required type="text" name="name" value={formState.name} onChange={handleChange} placeholder=" " autoComplete="name" className={`${inputClass} ${errors.name ? 'ring-1 ring-red-500' : ''}`} />
+                    <label htmlFor={`${fieldPrefix}-name`} className={labelClass}>Full Name <span className="text-[#F26A21]">*</span></label>
                     {errors.name && <span className="text-red-500 text-[11px] mt-1 ml-1">{errors.name}</span>}
                   </div>
                   <div className="relative">
-                    <input required type="tel" name="phone" value={formState.phone} onChange={handleChange} placeholder=" " className={`${inputClass} ${errors.phone ? 'ring-1 ring-red-500' : ''}`} />
-                    <label className={labelClass}>Phone Number <span className="text-[#F26A21]">*</span></label>
+                    <input id={`${fieldPrefix}-phone`} required type="tel" name="phone" value={formState.phone} onChange={handleChange} placeholder=" " autoComplete="tel" className={`${inputClass} ${errors.phone ? 'ring-1 ring-red-500' : ''}`} />
+                    <label htmlFor={`${fieldPrefix}-phone`} className={labelClass}>Phone Number <span className="text-[#F26A21]">*</span></label>
                     {errors.phone && <span className="text-red-500 text-[11px] mt-1 ml-1">{errors.phone}</span>}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-[20px]">
                   <div className="relative">
-                    <input required type="email" name="email" value={formState.email} onChange={handleChange} placeholder=" " className={`${inputClass} ${errors.email ? 'ring-1 ring-red-500' : ''}`} />
-                    <label className={labelClass}>Email Address <span className="text-[#F26A21]">*</span></label>
+                    <input id={`${fieldPrefix}-email`} required type="email" name="email" value={formState.email} onChange={handleChange} placeholder=" " autoComplete="email" className={`${inputClass} ${errors.email ? 'ring-1 ring-red-500' : ''}`} />
+                    <label htmlFor={`${fieldPrefix}-email`} className={labelClass}>Email Address <span className="text-[#F26A21]">*</span></label>
                     {errors.email && <span className="text-red-500 text-[11px] mt-1 ml-1">{errors.email}</span>}
                   </div>
                   <div className="relative">
-                    <input required type="text" name="company" value={formState.company} onChange={handleChange} placeholder=" " className={inputClass} />
-                    <label className={labelClass}>Company Name <span className="text-[#F26A21]">*</span></label>
+                    <input id={`${fieldPrefix}-company`} required type="text" name="company" value={formState.company} onChange={handleChange} placeholder=" " autoComplete="organization" className={inputClass} />
+                    <label htmlFor={`${fieldPrefix}-company`} className={labelClass}>Company Name <span className="text-[#F26A21]">*</span></label>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-[20px]">
                   <div className="relative">
-                    <input required type="text" name="city" value={formState.city} onChange={handleChange} placeholder=" " className={`${inputClass} ${errors.city ? 'ring-1 ring-red-500' : ''}`} />
-                    <label className={labelClass}>City/Location <span className="text-[#F26A21]">*</span></label>
+                    <input id={`${fieldPrefix}-city`} required type="text" name="city" value={formState.city} onChange={handleChange} placeholder=" " autoComplete="address-level2" className={`${inputClass} ${errors.city ? 'ring-1 ring-red-500' : ''}`} />
+                    <label htmlFor={`${fieldPrefix}-city`} className={labelClass}>City/Location <span className="text-[#F26A21]">*</span></label>
                     {errors.city && <span className="text-red-500 text-[11px] mt-1 ml-1">{errors.city}</span>}
                   </div>
                   <div className="relative">
-                    <select required name="inquiry_type" value={formState.inquiry_type} onChange={handleChange} className={`${inputClass} appearance-none cursor-pointer`}>
+                    <select id={`${fieldPrefix}-inquiry-type`} required name="inquiry_type" value={formState.inquiry_type} onChange={handleChange} className={`${inputClass} appearance-none cursor-pointer`}>
                       <option value="" disabled hidden></option>
                       <option value="sales">Sales & Dealership</option>
                       <option value="product">Product Information</option>
@@ -226,7 +227,7 @@ const ContactContent: React.FC = () => {
                       <option value="other">Other</option>
                     </select>
                     {!formState.inquiry_type && (
-                      <label className="absolute left-[22px] top-1/2 -translate-y-1/2 text-[#6C6C6C] text-[14px] leading-[120%] tracking-[0.011em] pointer-events-none">
+                      <label htmlFor={`${fieldPrefix}-inquiry-type`} className="absolute left-[22px] top-1/2 -translate-y-1/2 text-[#6C6C6C] text-[14px] leading-[120%] tracking-[0.011em] pointer-events-none">
                         Inquiry Type <span className="text-[#F26A21]">*</span>
                       </label>
                     )}
@@ -237,8 +238,8 @@ const ContactContent: React.FC = () => {
                 </div>
 
                 <div className="relative mb-[14px]">
-                  <textarea required name="message" value={formState.message} onChange={handleChange} rows={4} placeholder=" " className={`${inputClass} resize-none min-h-[72px] ${errors.message ? 'ring-1 ring-red-500' : ''}`} />
-                  <label className={textareaLabelClass}>Message <span className="text-[#F26A21]">*</span></label>
+                  <textarea id={`${fieldPrefix}-message`} required name="message" value={formState.message} onChange={handleChange} rows={4} placeholder=" " autoComplete="off" className={`${inputClass} resize-none min-h-[72px] ${errors.message ? 'ring-1 ring-red-500' : ''}`} />
+                  <label htmlFor={`${fieldPrefix}-message`} className={textareaLabelClass}>Message <span className="text-[#F26A21]">*</span></label>
                   {errors.message && <span className="text-red-500 text-[11px] mt-1 ml-1">{errors.message}</span>}
                 </div>
 
