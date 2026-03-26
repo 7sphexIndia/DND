@@ -4,7 +4,7 @@ import btnIcon from '../../assets/images/symbol 1.svg';
 
 const OfficeLocation: React.FC = () => {
   return (
-    <section className="py-[60px] md:py-[100px] bg-white">
+    <section className="py-[60px] md:py-[100px]">
       <Container>
         <div className="text-center mb-10 md:mb-14">
           <h2 className="text-[#1F1F1F] text-[28px] md:text-[36px] font-medium mb-4 leading-[120%]">Visit Our Office</h2>

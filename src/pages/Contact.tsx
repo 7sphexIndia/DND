@@ -58,7 +58,7 @@ const Contact: React.FC = () => {
       </Suspense>
       
       <FAQ
-        className="py-[50px] md:py-[80px] md:mx-[20px] bg-[#F2F4F0] rounded-[10px]"
+        className="py-[50px] md:py-[80px] mx-[16px] md:mx-[20px] bg-[#F2F4F0] rounded-[10px]"
         size="wide"
         itemClassName="bg-[#FAF9F6] rounded-[10px] overflow-hidden"
         items={[

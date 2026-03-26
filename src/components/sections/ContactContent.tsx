@@ -258,7 +258,7 @@ const ContactContent: React.FC = () => {
     </section>
 
     {/* Crop Advisory Section */}
-    <section className="py-[60px] md:py-[100px] md:mx-[20px] bg-[#F2F4F0] rounded-[10px]">
+    <section className="py-[60px] md:py-[100px] mx-[16px] md:mx-[20px] bg-[#F2F4F0] rounded-[10px]">
       <Container size="wide">
         <div className="text-center max-w-[800px] mx-auto mb-[40px] md:mb-[60px]">
           <h2 className="text-[#1F1F1F] text-[28px] md:text-[42px] font-medium mb-5">
