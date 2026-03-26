@@ -4,8 +4,8 @@ import mapImg from '../../assets/images/map.webp';
 
 const GeographicPresence: React.FC = () => {
   return (
-    <section className="pt-[56px]">
-      <Container>
+    <section className="pt-[56px] md:mx-[20px]">
+      <Container size="wide">
         <div 
           className="relative rounded-[12px] overflow-hidden w-full min-h-[450px] lg:min-h-[716px] flex items-end"
           style={{

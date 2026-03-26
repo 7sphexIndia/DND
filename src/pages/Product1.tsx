@@ -24,7 +24,7 @@ const Product1: React.FC = () => {
         description="Explore DRD Plantech LLP vegetable seed hybrids including tomato, okra, bitter gourd, bottle gourd, watermelon, muskmelon, cucumber, chilli, and beans."
         path="/Vegetable Seeds"
         keywords="vegetable seeds India, tomato hybrid seeds, okra seeds, chilli seeds, cucumber seeds, DRD Plantech LLP products"
-        preloadImage="/src/assets/images/hero_bg.webp"
+        preloadImage={aboutBg}
       />
       <PageBanner title="Our Vegetable Seeds" backgroundImage={aboutBg} />
       

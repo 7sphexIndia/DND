@@ -51,12 +51,13 @@ const Contact: React.FC = () => {
       />
       <ContactContent />
 
-      <Suspense fallback={<div className="h-[300px] bg-gray-50 animate-pulse rounded-[10px] mx-[16px] lg:mx-[20px]"></div>}>
+      <Suspense fallback={<div className="h-[300px] bg-gray-50 animate-pulse rounded-[10px] md:mx-[20px]"></div>}>
         <OfficeLocation />
       </Suspense>
-
+      
       <FAQ
-        className="py-[50px] md:py-[80px] mx-[16px] lg:mx-[20px] bg-[#F2F4F0]"
+        className="py-[50px] md:py-[80px] md:mx-[20px] bg-[#F2F4F0] rounded-[10px]"
+        size="wide"
         itemClassName="bg-[#FAF9F6] rounded-[10px] overflow-hidden"
         items={[
           {

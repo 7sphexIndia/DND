@@ -3,8 +3,8 @@ import Container from '../common/Container';
 
 const ResearchInnovation: React.FC = () => {
   return (
-    <section className="bg-[#F2F4F0] rounded-[10px] p-[20px] md:p-[60px] lg:p-[80px] mx-[16px] lg:mx-[20px]">
-      <Container>
+    <section className="py-[60px] md:py-[100px] bg-[#F2F4F0] mx-[16px] md:mx-[20px] rounded-[10px]">
+      <Container size="wide">
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] md:gap-[80px]">
             

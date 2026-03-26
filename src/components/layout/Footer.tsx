@@ -12,7 +12,7 @@ import linkedinIcon from '../../assets/images/linkedin.svg';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-[#005948] text-white pt-[60px]">
-      <Container>
+      <Container size="wide">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.2fr] gap-10 lg:gap-14 mb-16 mx-auto">
 
           {/* Column 1: About & Social */}
@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
 
       {/* Bottom Bar */}
       <div className="bg-[#005242] py-[20px]">
-        <div className="max-w-[1440px] mx-auto px-[20px] flex flex-col lg:flex-row justify-between items-center text-center lg:text-left text-[13px] text-[#E5E5E5]">
+        <div className="max-w-[1220px] mx-auto px-[20px] flex flex-col lg:flex-row justify-between items-center text-center lg:text-left text-[13px] text-[#E5E5E5]">
           <p className="mb-4 lg:mb-0 lg:max-w-none">© 2026 DRD Plantech LLP. All Rights Reserved. Hybrid Vegetable Seed Manufacturer in India.</p>
           <div className="flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 gap-y-2 font-medium">
             <a href="#" className="hover:text-[#F26A21] hover:translate-x-1 inline-block transition-all duration-300">Privacy Policy</a>

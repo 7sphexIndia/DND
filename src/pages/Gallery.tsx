@@ -56,8 +56,8 @@ const Gallery: React.FC = () => {
       
       <PageBanner title="Photo Gallery" backgroundImage={galleryBg} />
 
-      <section className="py-[60px] md:py-[100px] bg-[#FAF9F6]">
-        <Container>
+      <section className="py-[60px] md:py-[100px] bg-[#FAF9F6] md:mx-[20px] rounded-[20px]">
+        <Container size="wide">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-[#1F1F1F] text-[28px] md:text-[36px] font-medium leading-[1.2] mb-6">
               Our High-Performance Hybrids

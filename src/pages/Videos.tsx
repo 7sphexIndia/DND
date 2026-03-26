@@ -20,8 +20,8 @@ const Videos: React.FC = () => {
       
       <PageBanner title="Video Gallery" backgroundImage={videoBg} />
 
-      <section className="py-[60px] md:py-[100px] bg-[#FAF9F6]">
-        <Container>
+      <section className="py-[60px] md:py-[100px] bg-[#FAF9F6] md:mx-[20px] rounded-[20px]">
+        <Container size="wide">
           <div className="max-w-4xl mx-auto">
             {/* Header */}
             <div className="text-center mb-16">
@@ -58,8 +58,8 @@ const Videos: React.FC = () => {
             </div>
 
             {/* Additional Info */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100" style={{ cursor: 'default' }}>
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100" style={{ cursor: 'default' }}>
                 <h3 className="text-[#1F1F1F] text-xl font-semibold mb-4 flex items-center gap-2">
                   <span className="w-8 h-8 rounded-full bg-[#005948]/10 text-[#005948] flex items-center justify-center text-sm font-bold">1</span>
                   Field Research Trials
@@ -68,7 +68,7 @@ const Videos: React.FC = () => {
                   Our videos showcase the rigorous multi-location trials and performance evaluations each hybrid undergoes before reaching the market.
                 </p>
               </div>
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100" style={{ cursor: 'default' }}>
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100" style={{ cursor: 'default' }}>
                 <h3 className="text-[#1F1F1F] text-xl font-semibold mb-4 flex items-center gap-2">
                   <span className="w-8 h-8 rounded-full bg-[#005948]/10 text-[#005948] flex items-center justify-center text-sm font-bold">2</span>
                   Quality Assurance

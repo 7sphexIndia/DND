@@ -6,6 +6,7 @@ import { ChevronDown } from 'lucide-react';
 import locationIcon from '../../assets/images/location.svg';
 import callIcon from '../../assets/images/call.svg';
 import emailIcon from '../../assets/images/email.svg';
+import { getApiUrl } from '../../utils/api';
 
 const ContactForm: React.FC = () => {
   const [formState, setFormState] = useState({
@@ -67,7 +68,7 @@ const ContactForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(getApiUrl('/api/contact'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -105,8 +106,8 @@ const ContactForm: React.FC = () => {
   const labelClass = "absolute left-[20px] top-[18px] text-[#6C6C6C] text-[14px] pointer-events-none opacity-0 peer-placeholder-shown:opacity-100 transition-opacity";
 
   return (
-    <section id="contact" className="bg-[#F2F4F0] mx-[16px] lg:mx-[20px]  rounded-[10px] py-[20px] md:py-[80px] overflow-hidden mb-[100px]">
-      <Container>
+    <section id="contact" className="bg-[#F2F4F0] mx-[16px] md:mx-[20px] rounded-[10px] py-[60px] md:py-[100px] overflow-hidden mb-[20px]">
+      <Container size="wide">
         <div>
 
           {/* Header */}

@@ -66,9 +66,9 @@ const Categories: React.FC = () => {
   ];
 
   return (
-    <section className="bg-[#F2F4F0] mx-[16px] lg:mx-[20px]  rounded-[10px] py-[50px] md:py-[80px] overflow-hidden">
+    <section className="bg-[#F2F4F0] mx-[16px] md:mx-[20px] rounded-[10px] py-[60px] md:py-[100px] overflow-hidden">
       
-      <Container>
+      <Container size="wide">
 
         {/* Top Tag + Heading */}
         <div className="text-center mb-10 md:mb-16">

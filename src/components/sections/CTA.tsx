@@ -27,10 +27,10 @@ const CTA: React.FC<CTAProps> = ({
 }) => {
   return (
     <section
-  className={`mx-[16px] lg:mx-[20px] rounded-[10px] py-[50px] px-[20px] md:py-[60px] md:px-[60px] bg-cover bg-center min-h-[430px] flex items-center ${className}`}
+  className={`mx-[16px] md:mx-[20px] rounded-[10px] py-[50px] md:py-[100px] bg-cover bg-center min-h-[430px] flex items-center ${className}`}
   style={{ backgroundImage: `url(${ctaBg})`, backgroundColor: '#F26A21', backgroundSize: 'cover' }}
 >
-      <Container className="!px-0">
+      <Container size="wide">
 
         <div className="flex flex-col items-center justify-center text-center">
 

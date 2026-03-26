@@ -37,8 +37,8 @@ const Products: React.FC = () => {
       
       <PageBanner title="Our Product Portfolio" backgroundImage={aboutBg} />
 
-      <section className="py-20 md:py-32 bg-[#FAF9F6]">
-        <Container>
+      <section className="py-20 md:py-32 bg-[#FAF9F6] md:mx-[20px] rounded-[20px]">
+        <Container size="wide">
           <div className="max-w-3xl mx-auto text-center mb-16 md:mb-24">
             <h2 className="text-[#1F1F1F] text-3xl md:text-4xl font-medium leading-tight mb-6">
               Empowering Agriculture with Superior Genetics
@@ -48,7 +48,7 @@ const Products: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px] md:gap-12">
             {categories.map((category, index) => (
               <Link 
                 key={index}
@@ -65,7 +65,7 @@ const Products: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
                   
                   {/* Floating Tags */}
-                  <div className="absolute bottom-6 left-6 flex flex-wrap gap-2">
+                  <div className="absolute bottom-6 left-[20px] md:left-6 flex flex-wrap gap-2">
                     {category.tags.map(tag => (
                       <span key={tag} className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#005948] text-xs font-semibold rounded-full uppercase tracking-wider">
                         {tag}
@@ -75,7 +75,7 @@ const Products: React.FC = () => {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8 md:p-10 flex flex-col flex-grow">
+                <div className="p-[20px] md:p-10 flex flex-col flex-grow">
                   <h3 className="text-[#1F1F1F] text-2xl md:text-3xl font-semibold mb-4 flex items-center justify-between">
                     {category.title}
                     <span className="w-10 h-10 rounded-full bg-[#005948]/10 text-[#005948] flex items-center justify-center transition-transform duration-500 group-hover:translate-x-2">

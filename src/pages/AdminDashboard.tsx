@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Mail, Phone, MapPin, Building2, MessageSquare, Calendar, RefreshCcw, Filter, ChevronRight, Download } from 'lucide-react';
+import { getApiUrl } from '../utils/api';
 
 interface Contact {
   id: number;
@@ -19,10 +20,26 @@ const AdminDashboard: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState('all');
 
+  const inquiryTypeLabels: Record<string, string> = {
+    sales: 'Sales & Dealership',
+    product: 'Product Information',
+    support: 'Agronomy Support',
+    other: 'Other'
+  };
+
+  const formatDate = (value: string) => {
+    const date = new Date(value);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+  };
+
   const fetchContacts = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/contacts');
+      const response = await fetch(getApiUrl('/api/contacts'));
       if (!response.ok) throw new Error('Failed to fetch data');
       const data = await response.json();
       setContacts(data);
@@ -53,9 +70,9 @@ const AdminDashboard: React.FC = () => {
         `"${c.email}"`,
         `"${c.company}"`,
         `"${c.city}"`,
-        `"${c.inquiry_type}"`,
+        `"${inquiryTypeLabels[c.inquiry_type] || 'Other'}"`,
         `"${c.message.replace(/"/g, '""')}"`,
-        `"${new Date(c.created_at).toLocaleString()}"`
+        `"${formatDate(c.created_at)} ${new Date(c.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}"`
       ].join(','))
     ].join('\n');
 
@@ -79,8 +96,8 @@ const AdminDashboard: React.FC = () => {
     };
     const color = colors[type] || colors.other;
     return (
-      <span className={`px-2 py-1 rounded-full text-[12px] font-medium border ${color} capitalize`}>
-        {type}
+      <span className={`inline-flex min-w-[140px] items-center justify-center rounded-full border px-3 py-2 text-[12px] font-medium leading-none whitespace-nowrap ${color}`}>
+        {inquiryTypeLabels[type] || inquiryTypeLabels.other}
       </span>
     );
   };
@@ -188,7 +205,7 @@ const AdminDashboard: React.FC = () => {
                   <tr className="bg-[#F8FAFC] border-b border-[#E2E8F0]">
                     <th className="px-6 py-4 text-[13px] font-semibold text-[#475569] uppercase tracking-wider">Contact Info</th>
                     <th className="px-6 py-4 text-[13px] font-semibold text-[#475569] uppercase tracking-wider">Details</th>
-                    <th className="px-6 py-4 text-[13px] font-semibold text-[#475569] uppercase tracking-wider">Type</th>
+                    <th className="w-[180px] px-6 py-4 text-[13px] font-semibold text-[#475569] uppercase tracking-wider">Type</th>
                     <th className="px-6 py-4 text-[13px] font-semibold text-[#475569] uppercase tracking-wider">Message</th>
                     <th className="px-6 py-4 text-[13px] font-semibold text-[#475569] uppercase tracking-wider text-right">Date</th>
                   </tr>
@@ -222,7 +239,7 @@ const AdminDashboard: React.FC = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-5 align-top">
+                      <td className="w-[180px] px-6 py-5 align-top">
                         {getInquiryBadge(contact.inquiry_type)}
                       </td>
                       <td className="px-6 py-5 align-top max-w-md">
@@ -234,7 +251,7 @@ const AdminDashboard: React.FC = () => {
                       <td className="px-6 py-5 align-top text-right">
                         <div className="flex flex-col items-end gap-1">
                           <div className="flex items-center gap-1.5 text-[13px] font-medium text-[#1E293B]">
-                             <Calendar size={14} className="text-[#94A3B8]" /> {new Date(contact.created_at).toLocaleDateString()}
+                             <Calendar size={14} className="text-[#94A3B8]" /> {formatDate(contact.created_at)}
                           </div>
                           <span className="text-[12px] text-[#94A3B8]">{new Date(contact.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>

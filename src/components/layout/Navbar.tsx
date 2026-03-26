@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className={`sticky bg-[#FAF9F6] top-0 left-0 right-0 z-50 transition-all duration-300 h-[80px] md:h-[110px] flex items-center`}>
       
-      <Container className="flex items-center justify-between h-full">
+      <Container size="wide" className="flex items-center justify-between h-full">
         
         {/* Logo */}
         <div className="flex items-center">

@@ -10,7 +10,8 @@ import greenIcon from '../../assets/images/symbol 2.svg';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative py-[60px] lg:py-0 lg:h-[calc(100vh-162px)] lg:min-h-[700px] flex items-center mx-[16px] lg:mx-[20px] rounded-[10px] overflow-hidden">      {/* Background Image with Overlay */}
+    <section className="relative py-[60px] md:py-[100px] lg:h-[calc(100vh-162px)] lg:min-h-[700px] flex items-center mx-[16px] md:mx-[20px] rounded-[10px] overflow-hidden">
+      {/* Background Image with Overlay */}
       <img 
         src={heroBg} 
         alt="Hero Background" 
@@ -20,7 +21,7 @@ const Hero: React.FC = () => {
       {/* Mobile Bottom Overlay for clear button contrast */}
       <div className="absolute inset-x-0 bottom-0 h-[60%] z-[5] bg-gradient-to-t from-[#002f23] via-[#002f23]/60 to-transparent opacity-90 md:hidden pointer-events-none"></div>
 
-      <Container className="relative z-10">
+      <Container size="wide" className="relative z-10">
         <div className="max-w-3xl">
           <div className="flex items-center gap-2 mb-4 mt-8 md:mt-0">
             <img src={tagIcon} alt="icon" className="w-[18px] h-[18px] md:w-[22px] md:h-[22px]" />

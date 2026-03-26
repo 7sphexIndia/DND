@@ -13,6 +13,7 @@ interface FAQProps {
   itemClassName?: string;
   items?: FAQItem[];
   action?: React.ReactNode;
+  size?: 'standard' | 'wide';
 }
 
 const FAQ: React.FC<FAQProps> = ({
@@ -20,6 +21,7 @@ const FAQ: React.FC<FAQProps> = ({
   itemClassName = 'bg-[#F2F4F0] rounded-[8px] overflow-hidden',
   items,
   action,
+  size = 'standard',
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -44,7 +46,7 @@ const FAQ: React.FC<FAQProps> = ({
 
   return (
     <section id="faq" className={className}>
-      <Container>
+      <Container size={size}>
         <div>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 items-stretch">
             

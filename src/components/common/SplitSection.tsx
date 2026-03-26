@@ -30,8 +30,8 @@ const SplitSection: React.FC<Props> = ({
   variant = 'split',
 }) => {
   return (
-    <section className="bg-[#F2F4F0] mx-[16px] lg:mx-[20px]  rounded-[10px] py-[50px] md:py-[80px]">
-      <Container>
+    <section className="bg-[#F2F4F0] mx-[16px] md:mx-[20px] rounded-[10px] py-[60px] md:py-[100px]">
+      <Container size="wide">
 
         {/* COMMON HEADER */}
         <div className="mb-10 lg:mb-12">

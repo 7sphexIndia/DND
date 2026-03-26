@@ -12,6 +12,14 @@ type SEOProps = {
 const SITE_NAME = 'DRD Plantech LLP';
 const DEFAULT_IMAGE = '/site-logo.jpg';
 
+const resolveUrl = (value: string, origin: string) => {
+  try {
+    return new URL(value, origin).toString();
+  } catch {
+    return null;
+  }
+};
+
 const setMetaTag = (
   selector: string,
   attributes: Record<string, string>,
@@ -39,10 +47,12 @@ const setLinkTag = (
 
   if (!tag) {
     tag = document.createElement('link');
+    tag.setAttribute('href', href);
     Object.entries(attributes).forEach(([key, value]) => {
       tag?.setAttribute(key, value);
     });
     document.head.appendChild(tag);
+    return;
   }
 
   tag.setAttribute('href', href);
@@ -53,6 +63,10 @@ const SEO = ({ title, description, path, image, keywords, preloadImage }: SEOPro
     const origin = window.location.origin;
     const canonicalUrl = new URL(path, origin).toString();
     const imageUrl = new URL(image || DEFAULT_IMAGE, origin).toString();
+    const preloadUrl =
+      typeof preloadImage === 'string' && preloadImage.trim()
+        ? resolveUrl(preloadImage, origin)
+        : null;
     const fullTitle = `${title} | ${SITE_NAME}`;
 
     document.title = fullTitle;
@@ -82,8 +96,16 @@ const SEO = ({ title, description, path, image, keywords, preloadImage }: SEOPro
     setMetaTag('meta[name="twitter:image"]', { name: 'twitter:image' }, imageUrl);
     setLinkTag('link[rel="canonical"]', { rel: 'canonical' }, canonicalUrl);
 
-    if (preloadImage) {
-      setLinkTag('link[rel="preload"]', { rel: 'preload', as: 'image' }, preloadImage);
+    const preloadSelector = 'link[data-seo-preload="true"]';
+
+    if (preloadUrl) {
+      setLinkTag(
+        preloadSelector,
+        { rel: 'preload', as: 'image', 'data-seo-preload': 'true' },
+        preloadUrl
+      );
+    } else {
+      document.head.querySelector(preloadSelector)?.remove();
     }
 
     let schemaScript = document.getElementById('seo-structured-data');
@@ -111,7 +133,11 @@ const SEO = ({ title, description, path, image, keywords, preloadImage }: SEOPro
         },
       ],
     });
-  }, [description, image, keywords, path, title]);
+
+    return () => {
+      document.head.querySelector(preloadSelector)?.remove();
+    };
+  }, [description, image, keywords, path, preloadImage, title]);
 
   return null;
 };

@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Categories from '../components/sections/Categories';
 import FieldTrials from '../components/sections/FieldTrials';
 import Featured from '../components/sections/Featured';
-import KnowledgeCenter from '../components/sections/KnowledgeCenter';
 import Insights from '../components/sections/Insights';
 import CTA from '../components/sections/CTA';
 import FAQ from '../components/sections/FAQ';
 import ContactForm from '../components/sections/ContactForm';
 import Commercial from '../components/sections/Commercial';
 import SEO from '../components/common/SEO';
+import heroBg from '../assets/images/hero_bg.webp';
+
+const KnowledgeCenter = lazy(() => import('../components/sections/KnowledgeCenter'));
 
 const Home: React.FC = () => {
   return (
@@ -20,14 +22,20 @@ const Home: React.FC = () => {
         description="DRD Plantech LLP delivers high-performance hybrid vegetable and field crop seeds focused on yield, uniformity, reliability, and dealer support."
         path="/"
         keywords="hybrid vegetable seeds India, DRD Plantech LLP, vegetable seed company, field crop seeds, dealer network, commercial farming"
-        preloadImage="/src/assets/images/hero_bg.webp"
+        preloadImage={heroBg}
       />
       <Hero />
       <About />
       <Categories />
       <FieldTrials />
       <Featured />
-      <KnowledgeCenter />
+      <Suspense
+        fallback={
+          <div className="mx-[20px] my-[60px] h-[320px] rounded-[10px] bg-[#F2F4F0] animate-pulse md:my-[100px]" />
+        }
+      >
+        <KnowledgeCenter />
+      </Suspense>
       <Commercial /> 
       <Insights />
       <CTA 

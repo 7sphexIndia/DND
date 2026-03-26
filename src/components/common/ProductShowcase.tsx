@@ -25,11 +25,11 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({
 }) => {
   const outerBg = theme === 'alternate' ? 'bg-[#F2F4F0]' : 'bg-[#FAFAF9]';
   const innerBg = theme === 'alternate' ? 'bg-[#FAFAF9]' : 'bg-[#F2F4F0]';
-  const sectionPadding = theme === 'alternate' ? 'py-[50px] md:py-[80px] mx-[16px] lg:mx-[20px]' : 'py-[60px] md:py-[100px]';
+  const sectionPadding = 'py-[60px] md:py-[100px]';
 
   return (
-    <section className={`${sectionPadding} ${outerBg}`}>
-      <Container>
+    <section className={`${sectionPadding} ${outerBg} md:mx-[20px] rounded-[12px] overflow-hidden`}>
+      <Container size="wide">
         {/* Title */}
         <h2 className="text-[#1F1F1F] text-[28px] md:text-[36px] font-medium leading-[1.2] text-center mb-6 lg:mb-12">
           {title}

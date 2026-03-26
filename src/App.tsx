@@ -7,8 +7,9 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
 
+import Home from './pages/Home';
+
 // Lazy load pages
-const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Product1 = lazy(() => import('./pages/Product1'));
 const Product2 = lazy(() => import('./pages/Product2'));
@@ -47,7 +48,7 @@ const AppContent: React.FC = () => {
         </Suspense>
       </main>
       {!isAdminPage && <Footer />}
-      <SpeedInsights />
+      {import.meta.env.PROD && <SpeedInsights />}
     </div>
   );
 };

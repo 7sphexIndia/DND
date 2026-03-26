@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import icon from '../../assets/images/apme_symbol-green.svg';
 import featuredVideo from '../../assets/video/futured-video.mp4';
@@ -6,8 +6,33 @@ import btnIcon from '../../assets/images/symbol 1.svg';
 import Container from '../common/Container';
 
 const KnowledgeCenter: React.FC = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-[60px] md:py-[100px]">
+    <section ref={sectionRef} className="py-[60px] md:py-[100px]">
       
       <Container>
 
@@ -50,15 +75,22 @@ const KnowledgeCenter: React.FC = () => {
           </div>
 
           {/* Right Media */}
-          <div className="h-full rounded-[10px] overflow-hidden">
-            <video
-              src={featuredVideo}
-              className="w-full h-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
+          <div className="h-full rounded-[10px] overflow-hidden bg-[#E7ECE6]">
+            {shouldLoadVideo ? (
+              <video
+                src={featuredVideo}
+                className="w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+              />
+            ) : (
+              <div className="flex h-full min-h-[260px] items-center justify-center bg-[linear-gradient(135deg,#eef3ed_0%,#dbe6dd_100%)] px-6 text-center text-[#5A6A61]">
+                Featured video loads as you scroll
+              </div>
+            )}
           </div>
 
         </div>

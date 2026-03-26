@@ -9,6 +9,7 @@ import ad1 from '../../assets/images/ad1.svg';
 import ad2 from '../../assets/images/ad2.svg';
 import ad3 from '../../assets/images/ad3.svg';
 import btnIcon2 from '../../assets/images/symbol 1.svg';
+import { getApiUrl } from '../../utils/api';
 
 
 
@@ -72,7 +73,7 @@ const ContactContent: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(getApiUrl('/api/contact'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -257,8 +258,8 @@ const ContactContent: React.FC = () => {
     </section>
 
     {/* Crop Advisory Section */}
-    <section className="py-[50px] md:py-[80px] mx-[16px] lg:mx-[20px] bg-[#F2F4F0]">
-      <Container>
+    <section className="py-[60px] md:py-[100px] md:mx-[20px] bg-[#F2F4F0] rounded-[10px]">
+      <Container size="wide">
         <div className="text-center max-w-[800px] mx-auto mb-[40px] md:mb-[60px]">
           <h2 className="text-[#1F1F1F] text-[28px] md:text-[42px] font-medium mb-5">
             Crop Advisory and Technical Assistance
