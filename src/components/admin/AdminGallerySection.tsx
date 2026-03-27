@@ -99,8 +99,9 @@ const AdminGallerySection: React.FC<AdminGallerySectionProps> = ({
     </div>
 
     {isAddModalOpen && (
-      <div className="fixed inset-0 z-[120] flex items-center justify-center bg-[#0f172a]/55 p-4">
-        <div className="w-full max-w-[560px] rounded-[10px] border border-[#DDE7E3] bg-white shadow-[0_30px_80px_rgba(15,23,42,0.22)]">
+      <div className="fixed inset-0 z-[120] overflow-y-auto bg-[#0f172a]/55 p-4">
+        <div className="flex min-h-full items-center justify-center">
+          <div className="flex w-full max-w-[560px] max-h-[calc(100vh-2rem)] flex-col overflow-hidden rounded-[10px] border border-[#DDE7E3] bg-white shadow-[0_30px_80px_rgba(15,23,42,0.22)]">
           <div className="flex items-center justify-between border-b border-[#E2E8F0] px-6 py-5">
             <div>
               <h3 className="text-xl font-semibold text-[#1E293B]">Add Gallery Item</h3>
@@ -115,7 +116,7 @@ const AdminGallerySection: React.FC<AdminGallerySectionProps> = ({
             </button>
           </div>
 
-          <form onSubmit={onSubmit} className="space-y-4 p-6">
+          <form onSubmit={onSubmit} className="flex-1 space-y-4 overflow-y-auto p-6">
             <div>
               <label htmlFor="gallery-title" className="mb-2 block text-sm font-medium text-[#334155]">Title</label>
               <input
@@ -184,6 +185,7 @@ const AdminGallerySection: React.FC<AdminGallerySectionProps> = ({
               </button>
             </div>
           </form>
+          </div>
         </div>
       </div>
     )}
