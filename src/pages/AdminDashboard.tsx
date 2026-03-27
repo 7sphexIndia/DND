@@ -71,6 +71,7 @@ const AdminDashboard: React.FC = () => {
     src: '',
   });
   const [videoSrc, setVideoSrc] = useState('');
+  const [videoFile, setVideoFile] = useState<File | null>(null);
 
   const inquiryTypeLabels: Record<string, string> = {
     sales: 'Sales & Dealership',
@@ -207,13 +208,13 @@ const AdminDashboard: React.FC = () => {
     e.preventDefault();
     setVideoError(null);
 
-    if (!videoSrc.trim()) {
-      setVideoError('Please add a hosted video URL before saving.');
+    if (!videoFile) {
+      setVideoError('Please choose a video before saving.');
       return;
     }
 
     try {
-      const createdItem = await createVideoItem(videoSrc.trim());
+      const createdItem = await createVideoItem(videoFile);
 
       if (createdItem) {
         setVideoItems((prev) => [createdItem, ...prev]);
@@ -221,7 +222,11 @@ const AdminDashboard: React.FC = () => {
         await fetchVideos();
       }
 
+      if (videoSrc) {
+        URL.revokeObjectURL(videoSrc);
+      }
       setVideoSrc('');
+      setVideoFile(null);
       setIsVideoModalOpen(false);
     } catch (err: any) {
       setVideoError(err.message || 'Unable to save video.');
@@ -432,16 +437,43 @@ const AdminDashboard: React.FC = () => {
                 videoError={videoError}
                 isAddModalOpen={isVideoModalOpen}
                 deleteTarget={deleteVideoTarget}
-                onVideoUrlChange={(e) => {
+                onFileChange={(e) => {
+                  const file = e.target.files?.[0];
+
+                  if (!file) {
+                    return;
+                  }
+
                   setVideoError(null);
-                  setVideoSrc(e.target.value);
+
+                  if (file.size > 4 * 1024 * 1024) {
+                    e.target.value = '';
+                    setVideoFile(null);
+                    if (videoSrc) {
+                      URL.revokeObjectURL(videoSrc);
+                    }
+                    setVideoSrc('');
+                    setVideoError('Video size must be 4 MB or smaller.');
+                    return;
+                  }
+
+                  if (videoSrc) {
+                    URL.revokeObjectURL(videoSrc);
+                  }
+
+                  setVideoFile(file);
+                  setVideoSrc(URL.createObjectURL(file));
                 }}
                 onSubmit={addVideoItem}
                 onOpenModal={() => setIsVideoModalOpen(true)}
                 onCloseModal={() => {
+                  if (videoSrc) {
+                    URL.revokeObjectURL(videoSrc);
+                  }
                   setIsVideoModalOpen(false);
                   setVideoError(null);
                   setVideoSrc('');
+                  setVideoFile(null);
                 }}
                 onRequestDelete={setDeleteVideoTarget}
                 onConfirmDelete={deleteVideoItem}
