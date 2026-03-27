@@ -8,6 +8,8 @@ interface AdminVideosSectionProps {
   videoError: string | null;
   isAddModalOpen: boolean;
   deleteTarget: VideoItem | null;
+  isLoading: boolean;
+  isSaving: boolean;
   onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
   onOpenModal: () => void;
@@ -23,6 +25,8 @@ const AdminVideosSection: React.FC<AdminVideosSectionProps> = ({
   videoError,
   isAddModalOpen,
   deleteTarget,
+  isLoading,
+  isSaving,
   onFileChange,
   onSubmit,
   onOpenModal,
@@ -58,7 +62,12 @@ const AdminVideosSection: React.FC<AdminVideosSectionProps> = ({
         </div>
 
         <div className="p-6">
-          {videoItems.length === 0 ? (
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center gap-4 rounded-[10px] border border-dashed border-[#CBD5E1] bg-[#F8FAFC] px-6 py-12 text-center text-[#64748B]">
+              <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-[#005948]"></div>
+              <p>Loading videos...</p>
+            </div>
+          ) : videoItems.length === 0 ? (
             <div className="rounded-[10px] border border-dashed border-[#CBD5E1] bg-[#F8FAFC] px-6 py-12 text-center text-[#64748B]">
               No videos found.
             </div>
@@ -74,7 +83,6 @@ const AdminVideosSection: React.FC<AdminVideosSectionProps> = ({
                   <div className="space-y-3 p-4">
                     <div>
                       <p className="text-base font-semibold text-[#1E293B]">Video {index + 1}</p>
-                      <p className="mt-1 break-all text-sm text-[#64748B]">{item.videoUrl}</p>
                     </div>
                     <button
                       type="button"
@@ -142,16 +150,27 @@ const AdminVideosSection: React.FC<AdminVideosSectionProps> = ({
                   <button
                     type="button"
                     onClick={onCloseModal}
+                    disabled={isSaving}
                     className="rounded-[10px] border border-[#D9E2EC] bg-white px-4 py-3 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
+                    disabled={isSaving}
                     className="inline-flex items-center gap-2 rounded-[10px] bg-[#F26A21] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#e05a12]"
                   >
-                    <Plus size={16} />
-                    Add Video
+                    {isSaving ? (
+                      <>
+                        <span className="h-4 w-4 animate-spin rounded-full border-b-2 border-white"></span>
+                        Saving...
+                      </>
+                    ) : (
+                      <>
+                        <Plus size={16} />
+                        Add Video
+                      </>
+                    )}
                   </button>
                 </div>
               </form>

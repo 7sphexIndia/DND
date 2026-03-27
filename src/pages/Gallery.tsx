@@ -12,11 +12,14 @@ import CTA from '../components/sections/CTA';
 const Gallery: React.FC = () => {
   const [galleryImages, setGalleryImages] = useState<GalleryItem[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const syncGalleryImages = () => {
+      setIsLoading(true);
       void getGalleryItems().then((items) => {
         setGalleryImages(items);
+        setIsLoading(false);
       });
     };
 
@@ -64,7 +67,12 @@ const Gallery: React.FC = () => {
             </p>
           </div>
 
-          {galleryImages.length === 0 ? (
+          {isLoading ? (
+            <div className="mx-auto flex max-w-3xl flex-col items-center justify-center rounded-[18px] border border-[#E5E7EB] bg-white px-6 py-14 text-center shadow-[0_20px_50px_rgba(15,23,42,0.06)]">
+              <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-[#005948]"></div>
+              <p className="mt-4 text-[16px] text-[#5F6B6D]">Loading gallery...</p>
+            </div>
+          ) : galleryImages.length === 0 ? (
             <div className="mx-auto max-w-3xl rounded-[18px] border border-[#E5E7EB] bg-white px-6 py-14 text-center shadow-[0_20px_50px_rgba(15,23,42,0.06)]">
               <h3 className="text-[24px] font-medium text-[#1F1F1F] md:text-[28px]">Gallery Coming Soon</h3>
               <p className="mx-auto mt-4 max-w-2xl text-[16px] leading-7 text-[#5F6B6D]">

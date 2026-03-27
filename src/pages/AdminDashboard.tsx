@@ -51,20 +51,16 @@ const optimizeGalleryImage = (file: File) =>
     image.src = objectUrl;
   });
 
-const fileToBase64 = (file: File): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
-
 const AdminDashboard: React.FC = () => {
   const [activeSection, setActiveSection] = useState<AdminSection>('overview');
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [videoItems, setVideoItems] = useState<VideoItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [galleryLoading, setGalleryLoading] = useState(true);
+  const [videoLoading, setVideoLoading] = useState(true);
+  const [gallerySaving, setGallerySaving] = useState(false);
+  const [videoSaving, setVideoSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState('all');
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
@@ -112,22 +108,28 @@ const AdminDashboard: React.FC = () => {
   };
 
   const fetchGallery = async () => {
+    setGalleryLoading(true);
     try {
       const items = await getGalleryItems();
       setGalleryItems(items);
       setGalleryError(null);
     } catch (err: any) {
       setGalleryError(err.message || 'Unable to load gallery items.');
+    } finally {
+      setGalleryLoading(false);
     }
   };
 
   const fetchVideos = async () => {
+    setVideoLoading(true);
     try {
       const items = await getVideoItems();
       setVideoItems(items);
       setVideoError(null);
     } catch (err: any) {
       setVideoError(err.message || 'Unable to load videos.');
+    } finally {
+      setVideoLoading(false);
     }
   };
 
@@ -177,6 +179,7 @@ const AdminDashboard: React.FC = () => {
       return;
     }
 
+    setGallerySaving(true);
     try {
       const createdItem = await createGalleryItem({
         title: galleryForm.title.trim(),
@@ -194,6 +197,8 @@ const AdminDashboard: React.FC = () => {
       setIsGalleryModalOpen(false);
     } catch (err: any) {
       setGalleryError(err.message || 'Unable to save gallery item.');
+    } finally {
+      setGallerySaving(false);
     }
   };
 
@@ -221,9 +226,9 @@ const AdminDashboard: React.FC = () => {
       return;
     }
 
+    setVideoSaving(true);
     try {
-      const base64Video = await fileToBase64(videoFile);
-      const createdItem = await createVideoItem(base64Video);
+      const createdItem = await createVideoItem(videoFile);
 
       if (createdItem) {
         setVideoItems((prev) => [createdItem, ...prev]);
@@ -239,6 +244,8 @@ const AdminDashboard: React.FC = () => {
       setIsVideoModalOpen(false);
     } catch (err: any) {
       setVideoError(err.message || 'Unable to save video.');
+    } finally {
+      setVideoSaving(false);
     }
   };
 
@@ -424,6 +431,8 @@ const AdminDashboard: React.FC = () => {
                 isAddModalOpen={isGalleryModalOpen}
                 deleteTarget={deleteTarget}
                 galleryError={galleryError}
+                isLoading={galleryLoading}
+                isSaving={gallerySaving}
                 onFieldChange={handleGalleryFieldChange}
                 onFileChange={handleGalleryFileChange}
                 onSubmit={addGalleryItem}
@@ -446,6 +455,8 @@ const AdminDashboard: React.FC = () => {
                 videoError={videoError}
                 isAddModalOpen={isVideoModalOpen}
                 deleteTarget={deleteVideoTarget}
+                isLoading={videoLoading}
+                isSaving={videoSaving}
                 onFileChange={(e) => {
                   const file = e.target.files?.[0];
 

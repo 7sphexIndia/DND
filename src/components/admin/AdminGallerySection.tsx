@@ -12,6 +12,8 @@ interface AdminGallerySectionProps {
   isAddModalOpen: boolean;
   deleteTarget: GalleryItem | null;
   galleryError: string | null;
+  isLoading: boolean;
+  isSaving: boolean;
   onFieldChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
@@ -28,6 +30,8 @@ const AdminGallerySection: React.FC<AdminGallerySectionProps> = ({
   isAddModalOpen,
   deleteTarget,
   galleryError,
+  isLoading,
+  isSaving,
   onFieldChange,
   onFileChange,
   onSubmit,
@@ -65,7 +69,12 @@ const AdminGallerySection: React.FC<AdminGallerySectionProps> = ({
 
       <div className="p-6">
         <div className="space-y-4">
-          {galleryItems.length === 0 ? (
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center gap-4 rounded-[10px] border border-dashed border-[#CBD5E1] bg-[#F8FAFC] px-6 py-12 text-center text-[#64748B]">
+              <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-[#005948]"></div>
+              <p>Loading gallery items...</p>
+            </div>
+          ) : galleryItems.length === 0 ? (
             <div className="rounded-[10px] border border-dashed border-[#CBD5E1] bg-[#F8FAFC] px-6 py-12 text-center text-[#64748B]">
               No gallery items found.
             </div>
@@ -169,20 +178,31 @@ const AdminGallerySection: React.FC<AdminGallerySectionProps> = ({
             )}
 
             <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
-              <button
-                type="button"
-                onClick={onCloseModal}
-                className="rounded-[10px] border border-[#D9E2EC] bg-white px-4 py-3 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50"
-              >
-                Cancel
+                  <button
+                    type="button"
+                    onClick={onCloseModal}
+                    disabled={isSaving}
+                    className="rounded-[10px] border border-[#D9E2EC] bg-white px-4 py-3 text-sm font-medium text-[#475569] transition-colors hover:bg-gray-50"
+                  >
+                    Cancel
               </button>
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 rounded-[10px] bg-[#F26A21] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#e05a12]"
-              >
-                <Plus size={16} />
-                Add To Gallery
-              </button>
+                  <button
+                    type="submit"
+                    disabled={isSaving}
+                    className="inline-flex items-center gap-2 rounded-[10px] bg-[#F26A21] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#e05a12]"
+                  >
+                    {isSaving ? (
+                      <>
+                        <span className="h-4 w-4 animate-spin rounded-full border-b-2 border-white"></span>
+                        Saving...
+                      </>
+                    ) : (
+                      <>
+                        <Plus size={16} />
+                        Add To Gallery
+                      </>
+                    )}
+                  </button>
             </div>
           </form>
           </div>
