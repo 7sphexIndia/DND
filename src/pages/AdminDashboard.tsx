@@ -3,12 +3,15 @@ import { ChevronRight, Download, Filter, RefreshCcw } from 'lucide-react';
 import AdminContactsSection from '../components/admin/AdminContactsSection';
 import AdminGallerySection from '../components/admin/AdminGallerySection';
 import AdminOverview from '../components/admin/AdminOverview';
+import AdminProductsSection from '../components/admin/AdminProductsSection';
 import AdminSidebar from '../components/admin/AdminSidebar';
 import AdminVideosSection from '../components/admin/AdminVideosSection';
 import type { AdminSection, Contact } from '../components/admin/types';
 import { getApiUrl } from '../utils/api';
 import { createGalleryItem, getGalleryItems, removeGalleryItem } from '../utils/gallery';
 import type { GalleryItem } from '../utils/gallery';
+import { createProductItem, removeProductItem, getProductItems } from '../utils/products';
+import type { ProductItem, ProductPayload } from '../utils/products';
 import { createVideoItem, getVideoItems, removeVideoItem } from '../utils/videos';
 import type { VideoItem } from '../utils/videos';
 
@@ -56,23 +59,33 @@ const AdminDashboard: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [videoItems, setVideoItems] = useState<VideoItem[]>([]);
+  const [productItems, setProductItems] = useState<ProductItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [galleryLoading, setGalleryLoading] = useState(true);
   const [videoLoading, setVideoLoading] = useState(true);
+  const [productLoading, setProductLoading] = useState(true);
   const [gallerySaving, setGallerySaving] = useState(false);
   const [videoSaving, setVideoSaving] = useState(false);
+  const [productSaving, setProductSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState('all');
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [galleryError, setGalleryError] = useState<string | null>(null);
   const [videoError, setVideoError] = useState<string | null>(null);
+  const [productError, setProductError] = useState<string | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<GalleryItem | null>(null);
   const [deleteVideoTarget, setDeleteVideoTarget] = useState<VideoItem | null>(null);
+  const [deleteProductTarget, setDeleteProductTarget] = useState<ProductItem | null>(null);
   const [galleryForm, setGalleryForm] = useState({
     title: '',
     category: '',
     src: '',
+  });
+  const [productForm, setProductForm] = useState<ProductPayload>({
+    name: '',
+    variants: [{ title: '', image: '', description: '' }],
   });
   const [videoSrc, setVideoSrc] = useState('');
   const [videoFile, setVideoFile] = useState<File | null>(null);
@@ -133,10 +146,24 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  const fetchProducts = async () => {
+    setProductLoading(true);
+    try {
+      const items = await getProductItems();
+      setProductItems(items);
+      setProductError(null);
+    } catch (err: any) {
+      setProductError(err.message || 'Unable to load products.');
+    } finally {
+      setProductLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchContacts();
     fetchGallery();
     fetchVideos();
+    fetchProducts();
   }, []);
 
   const filteredContacts =
@@ -249,6 +276,88 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  const handleProductVariantImageChange = async (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    setProductError(null);
+
+    try {
+      const optimizedImage = await optimizeGalleryImage(file);
+      setProductForm((prev) => ({
+        ...prev,
+        variants: prev.variants.map((variant, variantIndex) =>
+          variantIndex === index ? { ...variant, image: optimizedImage } : variant
+        ),
+      }));
+    } catch (err: any) {
+      setProductError(err.message || 'Unable to read the selected image.');
+    }
+  };
+
+  const addProductItem = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setProductError(null);
+
+    if (!productForm.name.trim()) {
+      setProductError('Please add product name before saving.');
+      return;
+    }
+
+    const cleanedVariants = productForm.variants.map((variant) => ({
+      title: variant.title.trim(),
+      image: variant.image.trim(),
+      description: variant.description.trim(),
+    }));
+
+    if (cleanedVariants.length === 0 || cleanedVariants.some((variant) => !variant.title || !variant.image || !variant.description)) {
+      setProductError('Please complete each variant title, image, and description before saving.');
+      return;
+    }
+
+    setProductSaving(true);
+    try {
+      const createdItem = await createProductItem({
+        name: productForm.name.trim(),
+        variants: cleanedVariants,
+      });
+
+      if (createdItem) {
+        setProductItems((prev) => [createdItem, ...prev]);
+      } else {
+        await fetchProducts();
+      }
+
+      setProductForm({
+        name: '',
+        variants: [{ title: '', image: '', description: '' }],
+      });
+      setIsProductModalOpen(false);
+    } catch (err: any) {
+      setProductError(err.message || 'Unable to save product.');
+    } finally {
+      setProductSaving(false);
+    }
+  };
+
+  const deleteProductItem = async () => {
+    if (!deleteProductTarget) {
+      return;
+    }
+
+    try {
+      await removeProductItem(deleteProductTarget.id);
+      setProductItems((prev) => prev.filter((item) => item.id !== deleteProductTarget.id));
+      setDeleteProductTarget(null);
+      setProductError(null);
+    } catch (err: any) {
+      setProductError(err.message || 'Unable to delete product.');
+    }
+  };
+
   const deleteVideoItem = async () => {
     if (!deleteVideoTarget) {
       return;
@@ -319,6 +428,7 @@ const AdminDashboard: React.FC = () => {
           contactsCount={contacts.length}
           galleryCount={galleryItems.length}
           videosCount={videoItems.length}
+          productsCount={productItems.length}
         />
 
         <main className="p-4 md:p-6 xl:px-10 xl:py-10">
@@ -333,7 +443,7 @@ const AdminDashboard: React.FC = () => {
                     </span>
                   </div>
                   <p className="mt-3 max-w-xl text-[15px] leading-7 text-[#5B6B82]">
-                    Manage incoming inquiries, review lead quality, and update gallery and video content that appears on the public website.
+                    Manage incoming inquiries, review lead quality, and update gallery, videos, and product content that appears on the public website.
                   </p>
                 </div>
 
@@ -498,6 +608,59 @@ const AdminDashboard: React.FC = () => {
                 onRequestDelete={setDeleteVideoTarget}
                 onConfirmDelete={deleteVideoItem}
                 onCloseDeleteModal={() => setDeleteVideoTarget(null)}
+              />
+            )}
+
+            {activeSection === 'products' && (
+              <AdminProductsSection
+                productItems={productItems}
+                productForm={productForm}
+                isAddModalOpen={isProductModalOpen}
+                deleteTarget={deleteProductTarget}
+                productError={productError}
+                isLoading={productLoading}
+                isSaving={productSaving}
+                onProductNameChange={(value) => {
+                  setProductError(null);
+                  setProductForm((prev) => ({ ...prev, name: value }));
+                }}
+                onVariantFieldChange={(index, field, value) => {
+                  setProductError(null);
+                  setProductForm((prev) => ({
+                    ...prev,
+                    variants: prev.variants.map((variant, variantIndex) =>
+                      variantIndex === index ? { ...variant, [field]: value } : variant
+                    ),
+                  }));
+                }}
+                onVariantImageChange={handleProductVariantImageChange}
+                onAddVariant={() => {
+                  setProductError(null);
+                  setProductForm((prev) => ({
+                    ...prev,
+                    variants: [...prev.variants, { title: '', image: '', description: '' }],
+                  }));
+                }}
+                onRemoveVariant={(index) => {
+                  setProductError(null);
+                  setProductForm((prev) => ({
+                    ...prev,
+                    variants: prev.variants.filter((_, variantIndex) => variantIndex !== index),
+                  }));
+                }}
+                onSubmit={addProductItem}
+                onRequestDelete={setDeleteProductTarget}
+                onConfirmDelete={deleteProductItem}
+                onOpenModal={() => setIsProductModalOpen(true)}
+                onCloseModal={() => {
+                  setIsProductModalOpen(false);
+                  setProductError(null);
+                  setProductForm({
+                    name: '',
+                    variants: [{ title: '', image: '', description: '' }],
+                  });
+                }}
+                onCloseDeleteModal={() => setDeleteProductTarget(null)}
               />
             )}
 

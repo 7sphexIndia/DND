@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, FolderKanban, Inbox, LayoutDashboard, LogOut, Menu, PlaySquare, X } from 'lucide-react';
+import { Boxes, ExternalLink, FolderKanban, Inbox, LayoutDashboard, LogOut, Menu, PlaySquare, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 import type { AdminSection } from './types';
@@ -11,6 +11,7 @@ interface AdminSidebarProps {
   contactsCount: number;
   galleryCount: number;
   videosCount: number;
+  productsCount: number;
 }
 
 const navItems = [
@@ -18,6 +19,7 @@ const navItems = [
   { id: 'contacts', label: 'Contacts', icon: Inbox },
   { id: 'gallery', label: 'Gallery', icon: FolderKanban },
   { id: 'videos', label: 'Videos', icon: PlaySquare },
+  { id: 'products', label: 'Products', icon: Boxes },
 ] as const;
 
 const AdminSidebar: React.FC<AdminSidebarProps> = ({
@@ -26,6 +28,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
   contactsCount,
   galleryCount,
   videosCount,
+  productsCount,
 }) => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -88,8 +91,10 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
                     ? contactsCount
                     : item.id === 'gallery'
                       ? galleryCount
-                      : item.id === 'videos'
+                    : item.id === 'videos'
                         ? videosCount
+                      : item.id === 'products'
+                        ? productsCount
                       : undefined;
 
                 return (
@@ -122,12 +127,12 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
               Review fresh leads, switch between sections quickly, and manage media content for the public gallery and video pages.
             </p>
             <a
-              href={activeSection === 'videos' ? '/videos' : '/gallery'}
+              href={activeSection === 'videos' ? '/videos' : activeSection === 'products' ? '/product1' : '/gallery'}
               target="_blank"
               rel="noreferrer"
               className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white"
             >
-              {activeSection === 'videos' ? 'Open Videos' : 'Open Gallery'}
+              {activeSection === 'videos' ? 'Open Videos' : activeSection === 'products' ? 'Open Products' : 'Open Gallery'}
               <ExternalLink size={14} />
             </a>
           </div>
@@ -142,7 +147,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
               Logout
             </button>
             <p>DRD Plantech LLP</p>
-            <p className="mt-1">Admin workspace for inquiries and media content.</p>
+            <p className="mt-1">Admin workspace for inquiries, media, and products.</p>
           </div>
         </div>
       </div>

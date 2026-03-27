@@ -65,7 +65,7 @@ const Videos: React.FC = () => {
                 {videos.map((video, index) => (
                   <div
                     key={video.id}
-                    className="overflow-hidden rounded-[18px] border border-[#005948]/10 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.08)]"
+                    className="overflow-hidden rounded-[18px] border border-[#005948]/10 bg-white"
                   >
                     <div className="relative aspect-video bg-black">
                       <video
